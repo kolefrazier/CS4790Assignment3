@@ -1,12 +1,103 @@
+@model PaginatedList<CS4790Assignment3.Models.Game>
 @{ 
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewData["Title"] = "Index";
 }
 
 @{ 
-	//List games here, paginated to ~10 per page?
-	//	Make columns sortable?
-	//Maybe include a "DEBUG: Has Reviews and/or Screenshots" label?
+//List games here, paginated to ~10 per page?
+//	Make columns sortable?
+//Maybe include a "DEBUG: Has Reviews and/or Screenshots" label?
+//Maybe make the game names clickable to go to the details page?
 }
 
-<p>This is some placeholder text.</p>
+@{ 
+	//Not going to lie, I'm proud of this conditional element.
+	//I tried to get something exactly like this in the first assignment but couldn't quite figure it out.
+}
+<div class="btn" style="visibility: @ViewData["DefaultFilterVisibility"]">
+	<a asp-action="Index">Default Sort</a>
+</div>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>
+				Currently Playing
+			</th>
+			<th>
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["currentFilter"]">Game Name</a>
+			</th>
+			<th>
+				Genre
+			</th>
+			<th>
+				Price
+			</th>
+			<th>
+				<a asp-action="Index" asp-route-sortOrder="@ViewData["HoursPlayed"]" asp-route-currentFilter="@ViewData["currentFilter"]">Hours Played</a>
+			</th>
+			<th>
+				Is Completed
+			</th>
+			<th>
+				Online Multiplayer
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var entry in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(g => entry.CurrentlyPlaying)
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@entry.GameID" alt="Click to edit entry.">
+						@Html.DisplayFor(g => entry.GameName)
+					</a>
+				</td>
+				<td>
+					@Html.DisplayFor(g => entry.Genre)
+				</td>
+				<td>
+					@Html.DisplayFor(g => entry.Price)
+				</td>
+				<td>
+					@Html.DisplayFor(g => entry.HoursPlayed)
+				</td>
+				<td>
+					@Html.DisplayFor(g => entry.IsCompleted)
+				</td>
+				<td>
+					@Html.DisplayFor(g => entry.IsOnlineMultiplayer)
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<div class="row text-center">
+	<br />
+	@{
+		var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+		var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+
+		<a asp-action="Index"
+		   asp-route-sortOrder="@ViewData["CurrentSort"]"
+		   asp-route-page="@(Model.PageIndex - 1)"
+		   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+		   class="btn">
+			Previous
+		</a>
+
+		<a asp-action="Index"
+		   asp-route-sortOrder="@ViewData["CurrentSort"]"
+		   asp-route-page="@(Model.PageIndex + 1)"
+		   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+		   class="btn">
+			Next
+		</a>
+
+	}
+</div>

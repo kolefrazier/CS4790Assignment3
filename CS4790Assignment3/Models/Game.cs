@@ -21,7 +21,7 @@ namespace CS4790Assignment3.Models
 
 		[Required]
 		[StringLength(75, MinimumLength = 1)]
-		public string Name { get; set; }
+		public string GameName { get; set; }
 
 		[Required]
 		public GameGenre Genre { get; set; }
@@ -30,7 +30,7 @@ namespace CS4790Assignment3.Models
 		public double Price { get; set; }
 
 		[Range(0, double.MaxValue, ErrorMessage = "Please enter a valid number.")]
-		public double? HoursPlayed { get; set; }
+		public double HoursPlayed { get; set; }
 
 		[Required]
 		public bool IsCompleted { get; set; }

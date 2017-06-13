@@ -8,7 +8,7 @@ namespace CS4790Assignment3.Models
 	public class Publisher
 	{
 		public int PublisherID { get; set; }
-		public string Name { get; set; }
+		public string PublisherName { get; set; }
 		public bool IsIndie { get; set; }
 		public bool IsTripleA { get; set; }
 
