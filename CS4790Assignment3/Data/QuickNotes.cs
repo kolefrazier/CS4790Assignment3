@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace CS4790Assignment3.Data
 {
-    public class QuickNotes
-    {
+	public class QuickNotes
+	{
 		/*
 		 * 
 		 * ---Video Games---

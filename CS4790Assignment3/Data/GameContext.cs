@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CS4790Assignment3.Data
 {
-    public class GameContext : DbContext
-    {
+	public class GameContext : DbContext
+	{
 		public GameContext(DbContextOptions<GameContext> options) : base(options)
 		{
 
@@ -25,6 +25,7 @@ namespace CS4790Assignment3.Data
 			modelBuilder.Entity<Publisher>().ToTable("Publisher");
 			modelBuilder.Entity<Review>().ToTable("Review");
 			modelBuilder.Entity<Screenshot>().ToTable("Screenshot");
+
 		}
 	}
 }
