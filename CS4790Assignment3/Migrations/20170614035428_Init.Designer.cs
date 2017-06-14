@@ -9,8 +9,8 @@ using CS4790Assignment3.Models;
 namespace CS4790Assignment3.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20170613052858_test1")]
-    partial class test1
+    [Migration("20170614035428_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,21 +25,25 @@ namespace CS4790Assignment3.Migrations
 
                     b.Property<bool>("CurrentlyPlaying");
 
+                    b.Property<string>("GameName")
+                        .IsRequired()
+                        .HasMaxLength(75);
+
                     b.Property<int>("Genre");
 
-                    b.Property<double?>("HoursPlayed");
+                    b.Property<double>("HoursPlayed");
 
                     b.Property<bool>("IsCompleted");
 
                     b.Property<bool>("IsOnlineMultiplayer");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(75);
-
                     b.Property<double>("Price");
 
+                    b.Property<int?>("PublisherID");
+
                     b.HasKey("GameID");
+
+                    b.HasIndex("PublisherID");
 
                     b.ToTable("Game");
                 });
@@ -53,7 +57,7 @@ namespace CS4790Assignment3.Migrations
 
                     b.Property<bool>("IsTripleA");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("PublisherName");
 
                     b.HasKey("PublisherID");
 
@@ -70,8 +74,6 @@ namespace CS4790Assignment3.Migrations
                     b.Property<bool>("DoesRecommend");
 
                     b.Property<int?>("GameID");
-
-                    b.Property<string>("GameName");
 
                     b.Property<DateTime>("LastUpdateDate");
 
@@ -106,6 +108,13 @@ namespace CS4790Assignment3.Migrations
                     b.HasIndex("GameID");
 
                     b.ToTable("Screenshot");
+                });
+
+            modelBuilder.Entity("CS4790Assignment3.Models.Game", b =>
+                {
+                    b.HasOne("CS4790Assignment3.Models.Publisher", "Publisher")
+                        .WithMany("PublishedGames")
+                        .HasForeignKey("PublisherID");
                 });
 
             modelBuilder.Entity("CS4790Assignment3.Models.Review", b =>

@@ -48,26 +48,42 @@ namespace CS4790Assignment3.Data
 			//Publishers
 			var Publisher = new Publisher[]
 			{
-				new Publisher { PublisherName = "Valve Software", IsTripleA = true, IsIndie = false },
-				new Publisher { PublisherName = "Microsoft Studios", IsTripleA = true, IsIndie = false},
-				new Publisher { PublisherName = "From Software", IsTripleA = true, IsIndie = false},
-				new Publisher { PublisherName = "Edward McMullin", IsTripleA = false, IsIndie = true},
-				new Publisher { PublisherName = "Rockstar", IsTripleA = true, IsIndie = false}
+				new Publisher { PublisherName = "No Third Games Software", IsTripleA = true, IsIndie = false },
+				new Publisher { PublisherName = "NSA-Backdoor Studios", IsTripleA = true, IsIndie = false},
+				new Publisher { PublisherName = "For Software", IsTripleA = true, IsIndie = false},
+				new Publisher { PublisherName = "Tom Hanks", IsTripleA = false, IsIndie = true},
+				new Publisher { PublisherName = "Symphony Software", IsTripleA = true, IsIndie = false}
 			};
 			foreach (Publisher p in Publisher)
 			{
 				context.Publishers.Add(p);
 			}
 			context.SaveChanges();
+			
 
 			//Reviews
 			var Review = new Review[]
 			{
-				new Review { SubmissionDate = DateTime.Parse("2017-04-12"), ReviewedGameName = "The Binding of Isaac: Rebirth", DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!"},
-				new Review { SubmissionDate = DateTime.Parse("2016-06-23"), ReviewedGameName = "Ori and the Blind Forest", DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!"},
-				new Review { SubmissionDate = DateTime.Parse("2014-02-25"), ReviewedGameName = "Dark Souls: Prepare to Die", DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it." },
-				new Review { SubmissionDate = DateTime.Parse("2011-09-09"), ReviewedGameName = "Half-Life 2", DoesRecommend = false, ReviewContent = "Great game and fantastic story. But no sequal in sight, story inconclusive."},
-				new Review { SubmissionDate = DateTime.Parse("2013-03-04"), ReviewedGameName = "Amnesia: The Dark Descent", DoesRecommend = false, ReviewContent = "Way too scary!"}
+				new Review { SubmissionDate = DateTime.Parse("2017-01-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!"},
+				new Review { SubmissionDate = DateTime.Parse("2016-02-21"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!"},
+				new Review { SubmissionDate = DateTime.Parse("2014-03-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it." },
+				new Review { SubmissionDate = DateTime.Parse("2011-04-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. But no sequal in sight, story inconclusive."},
+				new Review { SubmissionDate = DateTime.Parse("2013-05-04"), DoesRecommend = false, ReviewContent = "Way too scary!"},
+				new Review { SubmissionDate = DateTime.Parse("2016-06-12"), DoesRecommend = true, ReviewContent = "Easy but fantastic!"},
+				new Review { SubmissionDate = DateTime.Parse("2017-07-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!"},
+				new Review { SubmissionDate = DateTime.Parse("2012-08-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it." },
+				new Review { SubmissionDate = DateTime.Parse("2010-09-09"), DoesRecommend = false, ReviewContent = "Great game."},
+				new Review { SubmissionDate = DateTime.Parse("2009-10-04"), DoesRecommend = false, ReviewContent = "Way too scary!"},
+				new Review { SubmissionDate = DateTime.Parse("2008-11-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!"},
+				new Review { SubmissionDate = DateTime.Parse("2007-12-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!"},
+				new Review { SubmissionDate = DateTime.Parse("2006-11-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it." },
+				new Review { SubmissionDate = DateTime.Parse("2005-10-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. Story inconclusive."},
+				new Review { SubmissionDate = DateTime.Parse("2012-09-04"), DoesRecommend = false, ReviewContent = "Way too scary!"},
+				new Review { SubmissionDate = DateTime.Parse("2013-08-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!"},
+				new Review { SubmissionDate = DateTime.Parse("2014-07-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!"},
+				new Review { SubmissionDate = DateTime.Parse("2015-06-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it." },
+				new Review { SubmissionDate = DateTime.Parse("2009-05-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. But no sequal in sight."},
+				new Review { SubmissionDate = DateTime.Parse("2010-04-04"), DoesRecommend = false, ReviewContent = "Way too scary!"}
 			};
 			foreach (Review r in Review)
 			{

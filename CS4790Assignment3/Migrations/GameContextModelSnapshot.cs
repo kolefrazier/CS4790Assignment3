@@ -78,8 +78,6 @@ namespace CS4790Assignment3.Migrations
 
                     b.Property<string>("ReviewContent");
 
-                    b.Property<string>("ReviewedGameName");
-
                     b.Property<DateTime>("SubmissionDate");
 
                     b.HasKey("ReviewID");

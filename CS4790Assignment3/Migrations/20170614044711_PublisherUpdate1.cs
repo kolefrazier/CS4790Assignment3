@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CS4790Assignment3.Migrations
 {
-    public partial class IDRenames : Migration
+    public partial class PublisherUpdate1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

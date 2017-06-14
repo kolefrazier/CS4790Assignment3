@@ -9,8 +9,8 @@ using CS4790Assignment3.Models;
 namespace CS4790Assignment3.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20170613053609_RestorePublisherFK")]
-    partial class RestorePublisherFK
+    [Migration("20170614044711_PublisherUpdate1")]
+    partial class PublisherUpdate1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,17 +25,17 @@ namespace CS4790Assignment3.Migrations
 
                     b.Property<bool>("CurrentlyPlaying");
 
+                    b.Property<string>("GameName")
+                        .IsRequired()
+                        .HasMaxLength(75);
+
                     b.Property<int>("Genre");
 
-                    b.Property<double?>("HoursPlayed");
+                    b.Property<double>("HoursPlayed");
 
                     b.Property<bool>("IsCompleted");
 
                     b.Property<bool>("IsOnlineMultiplayer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(75);
 
                     b.Property<double>("Price");
 
@@ -57,7 +57,7 @@ namespace CS4790Assignment3.Migrations
 
                     b.Property<bool>("IsTripleA");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("PublisherName");
 
                     b.HasKey("PublisherID");
 
@@ -74,8 +74,6 @@ namespace CS4790Assignment3.Migrations
                     b.Property<bool>("DoesRecommend");
 
                     b.Property<int?>("GameID");
-
-                    b.Property<string>("GameName");
 
                     b.Property<DateTime>("LastUpdateDate");
 

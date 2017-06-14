@@ -1,0 +1,112 @@
+﻿@model CS4790Assignment3.Models.ViewModels.GameDetails
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Game Details";
+}
+
+@{ 
+//Display game details by game.
+//This utilzies a viewmodel!!
+}
+
+<div class="row"><h2 class="text-center">Game Details</h2></div>
+<div class="row col-lg-12 col-md-12 text-center">
+	<a asp-action="Edit" asp-route-id="@(Model.GameID)">Edit</a> |
+	<a asp-action="Delete" asp-route-id="@(Model.GameID)">Delete</a>
+	<br /><br />
+</div>
+
+<div class="row">
+	<div class="col-lg-6 col-md-6">
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.GameName)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.GameName)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Genre)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Genre)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.HoursPlayed)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.HoursPlayed)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsCompleted)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.IsCompleted)
+			</dd>
+		</dl>
+	</div>
+
+	<div class="col-lg-6 col-md-6">
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.PublisherName)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.PublisherName)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.PublisherIsIndie)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.PublisherIsIndie)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.PublisherIsTripleA)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.PublisherIsTripleA)
+			</dd>
+		</dl>
+	</div>
+</div>
+
+<div class="row col-lg-12 col-md-12">
+	<h2 class="text-center">Reviews</h2>
+	<p class="text-center"><i>Note: Review Content may be the same (due to laziness in seed data), but dates should be different.</i></p>
+	<br />
+</div>
+
+<div class="row col-lg-12 col-md-12">
+	<table class="table table-hover">
+		<tr>
+			<th>
+				Does Recommend
+			</th>
+			<th>
+				Review Date
+			</th>
+			<th>
+				Review Content
+			</th>
+		</tr>
+		@foreach (var review in Model.Reviews)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(r => review.DoesRecommend)
+				</td>
+				<td>
+					@Html.DisplayFor(r => review.SubmissionDate)
+				</td>
+				<td>
+					@Html.DisplayFor(r => review.ReviewContent)
+				</td>
+			</tr>
+		}
+	</table>
+</div>

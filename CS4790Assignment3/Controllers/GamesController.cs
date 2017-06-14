@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CS4790Assignment3.Data;
 using CS4790Assignment3.Models;
+using CS4790Assignment3.Models.ViewModels;
 
 namespace CS4790Assignment3.Controllers
 {
@@ -74,14 +75,51 @@ namespace CS4790Assignment3.Controllers
 				return NotFound();
 			}
 
-			var game = await _context.Games
-				.SingleOrDefaultAsync(m => m.GameID == id);
-			if (game == null)
+			var game = await _context.Games.SingleOrDefaultAsync(m => m.GameID == id);
+
+			//var publisher = await _context.Publishers.SingleOrDefaultAsync(p => p.PublisherID == game.Publisher.PublisherID);
+
+			//if (game == null || publisher == null)
+			if(game == null)
 			{
 				return NotFound();
 			}
 
-			return View(game);
+			var reviews = _context.Reviews.Where(r => r.Game.GameID == id);
+
+			//I don't think this is right... But, it's combining Game, Publisher and Review into one viewmodel, which is then passed to the view..
+			GameDetails returnModel = new GameDetails()
+			{
+				GameID = game.GameID,
+				GameName = game.GameName,
+				PublisherName = "TEMP", //publisher.PublisherName,
+				PublisherIsIndie = false, // publisher.IsIndie,
+				PublisherIsTripleA = true, // publisher.IsTripleA,
+				Genre = game.Genre,
+				HoursPlayed = game.HoursPlayed,
+				IsCompleted = game.IsCompleted,
+				Reviews = reviews.ToList()
+			};
+
+			return View(returnModel);
+		}
+
+		// GET: Games/GamesPublisher
+		public IActionResult GamesPublisher()
+		{
+			return View();
+		}
+
+		// GET: Games/Screenshots
+		public IActionResult Screenshots()
+		{
+			return View();
+		}
+
+		// GET: Games/Reviews
+		public IActionResult Reviews()
+		{
+			return View();
 		}
 
 		// GET: Games/Create

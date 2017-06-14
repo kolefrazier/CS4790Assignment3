@@ -23,6 +23,9 @@
 	<thead>
 		<tr>
 			<th>
+				Game ID
+			</th>
+			<th>
 				Currently Playing
 			</th>
 			<th>
@@ -50,10 +53,13 @@
 		{
 			<tr>
 				<td>
+					@Html.DisplayFor(g => entry.GameID)
+				</td>
+				<td>
 					@Html.DisplayFor(g => entry.CurrentlyPlaying)
 				</td>
 				<td>
-					<a asp-action="Edit" asp-route-id="@entry.GameID" alt="Click to edit entry.">
+					<a asp-action="Details" asp-route-id="@entry.GameID" alt="Click to edit entry.">
 						@Html.DisplayFor(g => entry.GameName)
 					</a>
 				</td>
