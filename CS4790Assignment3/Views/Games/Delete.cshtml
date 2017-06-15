@@ -1,7 +1,63 @@
 ﻿@model CS4790Assignment3.Models.Game
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Delete Game";
 }
 
-<p>Not yet implemented.</p>
+
+<div class="row text-center">
+	<h2>Delete Game</h2>
+	<br />
+</div>
+
+<div class="row">
+	<div class="col-lg-3 col-md-3"></div>
+	<div class="col-lg-6 col-md-6">
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.GameName)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.GameName)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Genre)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Genre)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.HoursPlayed)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.HoursPlayed)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsCompleted)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.IsCompleted)
+			</dd>
+		</dl>
+	</div>
+	<div class="col-lg-3 col-md-3"></div>
+
+	<div class="col-lg-12 col-md-12 text-center">
+		<br />
+		<p>Are you sure you want to remove this game from the library?</p>
+		<form asp-action="Delete">
+			<input type="hidden" asp-for="GameID" />
+			<input type="submit" value="Delete" class="btn btn-danger" />
+			<a asp-action="Index" class="btn btn-success">Cancel</a>
+		</form>
+		
+	</div>
+</div>
+
+<div class="row">
+	
+</div>
+

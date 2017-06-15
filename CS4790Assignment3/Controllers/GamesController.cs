@@ -76,22 +76,20 @@ namespace CS4790Assignment3.Controllers
 			}
 
 			var game = await _context.Games.SingleOrDefaultAsync(m => m.GameID == id);
-
+			var reviews = _context.Reviews.Where(r => r.Game.GameID == id);
 			//var publisher = await _context.Publishers.SingleOrDefaultAsync(p => p.PublisherID == game.Publisher.PublisherID);
 
-			//if (game == null || publisher == null)
-			if(game == null)
+			if (game == null || reviews == null) //|| publisher == null
 			{
 				return NotFound();
 			}
-
-			var reviews = _context.Reviews.Where(r => r.Game.GameID == id);
 
 			//I don't think this is right... But, it's combining Game, Publisher and Review into one viewmodel, which is then passed to the view..
 			GameDetails returnModel = new GameDetails()
 			{
 				GameID = game.GameID,
 				GameName = game.GameName,
+				//Note: These ones are hardcoded as _context.Publishers keeps emptying itself...
 				PublisherName = "TEMP", //publisher.PublisherName,
 				PublisherIsIndie = false, // publisher.IsIndie,
 				PublisherIsTripleA = true, // publisher.IsTripleA,
@@ -125,6 +123,7 @@ namespace CS4790Assignment3.Controllers
 		// GET: Games/Create
 		public IActionResult Create()
 		{
+			ViewData["PublisherID"] = new SelectList(_context.Publishers, "PublisherID", "PublisherID");
 			return View();
 		}
 
@@ -157,6 +156,7 @@ namespace CS4790Assignment3.Controllers
 			{
 				return NotFound();
 			}
+			ViewData["PublisherID"] = new SelectList(_context.Publishers, "PublisherID", "PublisherID");
 			return View(game);
 		}
 
@@ -192,6 +192,7 @@ namespace CS4790Assignment3.Controllers
 				}
 				return RedirectToAction("Index");
 			}
+			ViewData["PublisherIDs"] = new SelectList(_context.Publishers, "PublisherID", "PublisherID");
 			return View(game);
 		}
 

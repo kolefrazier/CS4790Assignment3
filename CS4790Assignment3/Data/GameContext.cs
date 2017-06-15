@@ -18,6 +18,7 @@ namespace CS4790Assignment3.Data
 		public DbSet<Publisher> Publishers { get; set; }
 		public DbSet<Review> Reviews { get; set; }
 		public DbSet<Screenshot> Screenshots { get; set; }
+		//public DbSet<PublishedGames> PublishedGames { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -25,6 +26,8 @@ namespace CS4790Assignment3.Data
 			modelBuilder.Entity<Publisher>().ToTable("Publisher");
 			modelBuilder.Entity<Review>().ToTable("Review");
 			modelBuilder.Entity<Screenshot>().ToTable("Screenshot");
+
+			//modelBuilder.Entity<PublishedGames>().HasKey(p => new { p.GameID, p.PublisherID });
 
 		}
 	}

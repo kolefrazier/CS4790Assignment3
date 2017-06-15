@@ -9,8 +9,8 @@ using CS4790Assignment3.Models;
 namespace CS4790Assignment3.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20170614044711_PublisherUpdate1")]
-    partial class PublisherUpdate1
+    [Migration("20170615043624_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,8 +26,7 @@ namespace CS4790Assignment3.Migrations
                     b.Property<bool>("CurrentlyPlaying");
 
                     b.Property<string>("GameName")
-                        .IsRequired()
-                        .HasMaxLength(75);
+                        .IsRequired();
 
                     b.Property<int>("Genre");
 
@@ -52,6 +51,8 @@ namespace CS4790Assignment3.Migrations
                 {
                     b.Property<int>("PublisherID")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("GameID");
 
                     b.Property<bool>("IsIndie");
 
@@ -126,7 +127,7 @@ namespace CS4790Assignment3.Migrations
 
             modelBuilder.Entity("CS4790Assignment3.Models.Screenshot", b =>
                 {
-                    b.HasOne("CS4790Assignment3.Models.Game")
+                    b.HasOne("CS4790Assignment3.Models.Game", "Game")
                         .WithMany("Screenshots")
                         .HasForeignKey("GameID");
                 });

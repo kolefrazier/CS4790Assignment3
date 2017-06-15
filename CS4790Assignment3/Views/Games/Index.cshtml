@@ -4,19 +4,11 @@
 	ViewData["Title"] = "Index";
 }
 
-@{ 
-//List games here, paginated to ~10 per page?
-//	Make columns sortable?
-//Maybe include a "DEBUG: Has Reviews and/or Screenshots" label?
-//Maybe make the game names clickable to go to the details page?
-}
-
-@{ 
-	//Not going to lie, I'm proud of this conditional element.
-	//I tried to get something exactly like this in the first assignment but couldn't quite figure it out.
-}
-<div class="btn" style="visibility: @ViewData["DefaultFilterVisibility"]">
-	<a asp-action="Index">Default Sort</a>
+<div>
+	<div class="btn"><a asp-action="Create">Add Game</a></div>
+	<div class="btn" style="visibility: @ViewData["DefaultFilterVisibility"]">
+		<a asp-action="Index">Default Sort</a>
+	</div>
 </div>
 
 <table class="table table-hover">

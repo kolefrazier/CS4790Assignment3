@@ -15,6 +15,7 @@ namespace CS4790Assignment3.Migrations
                 {
                     PublisherID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    GameID = table.Column<int>(nullable: false),
                     IsIndie = table.Column<bool>(nullable: false),
                     IsTripleA = table.Column<bool>(nullable: false),
                     PublisherName = table.Column<string>(nullable: true)
@@ -31,7 +32,7 @@ namespace CS4790Assignment3.Migrations
                     GameID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CurrentlyPlaying = table.Column<bool>(nullable: false),
-                    GameName = table.Column<string>(maxLength: 75, nullable: false),
+                    GameName = table.Column<string>(nullable: false),
                     Genre = table.Column<int>(nullable: false),
                     HoursPlayed = table.Column<double>(nullable: false),
                     IsCompleted = table.Column<bool>(nullable: false),

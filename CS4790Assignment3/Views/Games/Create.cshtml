@@ -1,15 +1,16 @@
 ﻿@model CS4790Assignment3.Models.Game
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	ViewData["Title"] = "Edit Game";
+	ViewData["Title"] = "Add Game";
 }
 
+
 <div class="row">
-	<h2 class="text-center">Edit Game</h2>
+	<h2 class="text-center">Add Game</h2>
 	<br />
 </div>
 
-<form asp-action="Edit">
+<form asp-action="Create">
 	<div class="form-horizontal">
 		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 		<input type="hidden" asp-for="GameID" />

@@ -25,8 +25,7 @@ namespace CS4790Assignment3.Migrations
                     b.Property<bool>("CurrentlyPlaying");
 
                     b.Property<string>("GameName")
-                        .IsRequired()
-                        .HasMaxLength(75);
+                        .IsRequired();
 
                     b.Property<int>("Genre");
 
@@ -51,6 +50,8 @@ namespace CS4790Assignment3.Migrations
                 {
                     b.Property<int>("PublisherID")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("GameID");
 
                     b.Property<bool>("IsIndie");
 
@@ -125,7 +126,7 @@ namespace CS4790Assignment3.Migrations
 
             modelBuilder.Entity("CS4790Assignment3.Models.Screenshot", b =>
                 {
-                    b.HasOne("CS4790Assignment3.Models.Game")
+                    b.HasOne("CS4790Assignment3.Models.Game", "Game")
                         .WithMany("Screenshots")
                         .HasForeignKey("GameID");
                 });

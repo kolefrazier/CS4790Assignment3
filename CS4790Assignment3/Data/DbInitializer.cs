@@ -43,24 +43,21 @@ namespace CS4790Assignment3.Data
 			}
 			context.SaveChanges();
 
-			//TODO: Add seed stuff for Review and Screenshot classes.
-
 			//Publishers
-			var Publisher = new Publisher[]
+			var publishers = new Publisher[]
 			{
-				new Publisher { PublisherName = "No Third Games Software", IsTripleA = true, IsIndie = false },
+				new Publisher { PublisherName = "No Third Games Software", IsTripleA = true, IsIndie = false},
 				new Publisher { PublisherName = "NSA-Backdoor Studios", IsTripleA = true, IsIndie = false},
 				new Publisher { PublisherName = "For Software", IsTripleA = true, IsIndie = false},
 				new Publisher { PublisherName = "Tom Hanks", IsTripleA = false, IsIndie = true},
 				new Publisher { PublisherName = "Symphony Software", IsTripleA = true, IsIndie = false}
 			};
-			foreach (Publisher p in Publisher)
+			foreach (Publisher p in publishers)
 			{
 				context.Publishers.Add(p);
 			}
 			context.SaveChanges();
 			
-
 			//Reviews
 			var Review = new Review[]
 			{
@@ -104,6 +101,94 @@ namespace CS4790Assignment3.Data
 				context.Screenshots.Add(s);
 			}
 			context.SaveChanges();
+
+			/*
+			//PublishedGames
+			var gamePublishers = new PublishedGames[]
+			{
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "The Binding of Isaac: Rebirth").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "No Third Games Software").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "Team Fortress 2").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "NSA-Backdoor Studios").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "Arma III").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "For Software").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "Ori and the Blind Forest").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "Tom Hanks").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "Everspace").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "Symphony Software").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "The Escapists").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "No Third Games Software").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "Garry's Mod").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "NSA-Backdoor Studios").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "FTL").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "For Software").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "Half-Life 2").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "Tom Hanks").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "GTAV").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "Symphony Software").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "Hyper Light Drifer").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "No Third Games Software").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "Amnesia: The Dark Descent").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "NSA-Backdoor Studios").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "Dark Souls: Prepare to Die").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "For Software").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "Race the Sun").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "Tom Hanks").PublisherID
+				},
+				new PublishedGames
+				{
+					GameID = games.Single(g => g.GameName == "Tales of Zestiria").GameID,
+					PublisherID = publishers.Single(p => p.PublisherName == "Symphony Software").PublisherID
+				}
+			};
+
+			foreach (PublishedGames p in gamePublishers)
+			{
+				context.PublishedGames.Add(p);
+			}
+			context.SaveChanges();
+			*/
 		}
 	}
 }
