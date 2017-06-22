@@ -78,6 +78,9 @@ namespace CS4790Assignment3.Controllers
 			var game = await _context.Games.SingleOrDefaultAsync(m => m.GameID == id);
 			var reviews = _context.Reviews.Where(r => r.Game.GameID == id);
 			var publisher = await _context.Publishers.SingleOrDefaultAsync(p => p.PublisherID == game.Publisher.PublisherID);
+			//See this to try and track down why it's failing? https://github.com/WeberCS/WebUniversity/blob/master/WebUniversity/Controllers/InstructorsController.cs#L129
+			//		(The "PopulateAssignedCourseData" method)
+			Console.Write("This is a temp line so that VS will recognize a change in the file. Delete me later, mmk?");
 
 			if (game == null || reviews == null || publisher == null) //
 			{
