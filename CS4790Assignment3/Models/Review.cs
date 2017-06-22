@@ -10,16 +10,16 @@ namespace CS4790Assignment3.Models
 	public class Review
 	{
 		public int ReviewID { get; set; }
-		public int AuthorID { get; set; }
-		public bool DoesRecommend { get; set; }
+		public string Title { get; set; }
 		public string ReviewContent { get; set; }
+		public string Author { get; set; }
+		public bool DoesRecommend { get; set; }
 		
 		[DataType(DataType.Date)]
 		[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		public DateTime SubmissionDate { get; set; }
-		public DateTime LastUpdateDate { get; set; }
 
 		//Navigation Props
-		public Game Game { get; set; }
+		public virtual Game Game { get; set; }
 	}
 }

@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+ * https://stackoverflow.com/questions/27666857/entity-framework-code-first-foreign-key-issue
+ * https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
+ * http://www.entityframeworktutorial.net/code-first/configure-one-to-many-relationship-in-code-first.aspx
+ * http://www.entityframeworktutorial.net/code-first/code-first-conventions.aspx
+ * http://www.entityframeworktutorial.net/entity-relationships.aspx
+ * https://stackoverflow.com/questions/15628110/one-to-many-relationship-seeding-in-code-first
+ * 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,17 +28,13 @@ namespace CS4790Assignment3.Data
 		public DbSet<Publisher> Publishers { get; set; }
 		public DbSet<Review> Reviews { get; set; }
 		public DbSet<Screenshot> Screenshots { get; set; }
-		//public DbSet<PublishedGames> PublishedGames { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Game>().ToTable("Game");
 			modelBuilder.Entity<Publisher>().ToTable("Publisher");
+			modelBuilder.Entity<Game>().ToTable("Game");
 			modelBuilder.Entity<Review>().ToTable("Review");
 			modelBuilder.Entity<Screenshot>().ToTable("Screenshot");
-
-			//modelBuilder.Entity<PublishedGames>().HasKey(p => new { p.GameID, p.PublisherID });
-
 		}
 	}
 }

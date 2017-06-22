@@ -18,7 +18,7 @@
 				Game ID
 			</th>
 			<th>
-				Currently Playing
+				Already Owned
 			</th>
 			<th>
 				<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["currentFilter"]">Game Name</a>
@@ -30,13 +30,7 @@
 				Price
 			</th>
 			<th>
-				<a asp-action="Index" asp-route-sortOrder="@ViewData["HoursPlayed"]" asp-route-currentFilter="@ViewData["currentFilter"]">Hours Played</a>
-			</th>
-			<th>
-				Is Completed
-			</th>
-			<th>
-				Online Multiplayer
+				Online Multiplayer Capable
 			</th>
 		</tr>
 	</thead>
@@ -48,11 +42,11 @@
 					@Html.DisplayFor(g => entry.GameID)
 				</td>
 				<td>
-					@Html.DisplayFor(g => entry.CurrentlyPlaying)
+					@Html.DisplayFor(g => entry.AlreadyOwned)
 				</td>
 				<td>
 					<a asp-action="Details" asp-route-id="@entry.GameID" alt="Click to edit entry.">
-						@Html.DisplayFor(g => entry.GameName)
+						@Html.DisplayFor(g => entry.Name)
 					</a>
 				</td>
 				<td>
@@ -60,12 +54,6 @@
 				</td>
 				<td>
 					@Html.DisplayFor(g => entry.Price)
-				</td>
-				<td>
-					@Html.DisplayFor(g => entry.HoursPlayed)
-				</td>
-				<td>
-					@Html.DisplayFor(g => entry.IsCompleted)
 				</td>
 				<td>
 					@Html.DisplayFor(g => entry.IsOnlineMultiplayer)

@@ -15,7 +15,6 @@ namespace CS4790Assignment3.Migrations
                 {
                     PublisherID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    GameID = table.Column<int>(nullable: false),
                     IsIndie = table.Column<bool>(nullable: false),
                     IsTripleA = table.Column<bool>(nullable: false),
                     PublisherName = table.Column<string>(nullable: true)
@@ -31,12 +30,10 @@ namespace CS4790Assignment3.Migrations
                 {
                     GameID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CurrentlyPlaying = table.Column<bool>(nullable: false),
-                    GameName = table.Column<string>(nullable: false),
-                    Genre = table.Column<int>(nullable: false),
-                    HoursPlayed = table.Column<double>(nullable: false),
-                    IsCompleted = table.Column<bool>(nullable: false),
+                    AlreadyOwned = table.Column<bool>(nullable: false),
+                    Genre = table.Column<string>(nullable: true),
                     IsOnlineMultiplayer = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false),
                     PublisherID = table.Column<int>(nullable: true)
                 },
@@ -57,12 +54,12 @@ namespace CS4790Assignment3.Migrations
                 {
                     ReviewID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AuthorID = table.Column<int>(nullable: false),
+                    Author = table.Column<string>(nullable: true),
                     DoesRecommend = table.Column<bool>(nullable: false),
                     GameID = table.Column<int>(nullable: true),
-                    LastUpdateDate = table.Column<DateTime>(nullable: false),
                     ReviewContent = table.Column<string>(nullable: true),
-                    SubmissionDate = table.Column<DateTime>(nullable: false)
+                    SubmissionDate = table.Column<DateTime>(nullable: false),
+                    Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

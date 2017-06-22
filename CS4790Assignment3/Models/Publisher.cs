@@ -15,6 +15,6 @@ namespace CS4790Assignment3.Models
 		public bool IsTripleA { get; set; }
 
 		//Navigation Props
-		public ICollection<Game> PublishedGames { get; set; }
+		public virtual ICollection<Game> Games { get; set; }
 	}
 }

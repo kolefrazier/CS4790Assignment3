@@ -26,7 +26,7 @@ namespace CS4790Assignment3.Controllers
 			//return View(await _context.Games.ToListAsync());
 			ViewData["CurrentSort"] = sortOrder;
 			ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-			ViewData["HoursPlayed"] = sortOrder == "Hours" ? "hours_desc" : "Hours";
+			ViewData["HoursPlayed"] = sortOrder == "Price" ? "price_desc" : "Price";
 			ViewData["currentFilter"] = searchString;
 
 			if (searchString != null)
@@ -41,24 +41,24 @@ namespace CS4790Assignment3.Controllers
 
 			if (!String.IsNullOrEmpty(searchString))
 			{
-				games = games.Where(g => g.GameName.Contains(searchString));
+				games = games.Where(g => g.Name.Contains(searchString));
 			}
 
 			ViewData["DefaultFilterVisibility"] = "visible";
 			switch (sortOrder)
 			{
 				case "name_desc":
-					games = games.OrderByDescending(g => g.GameName);
+					games = games.OrderByDescending(g => g.Name);
 					break;
-				case "Hours":
-					games = games.OrderBy(g => g.HoursPlayed);
+				case "Price":
+					games = games.OrderBy(g => g.Price);
 					break;
-				case "hours_desc":
-					games = games.OrderByDescending(g => g.HoursPlayed);
+				case "price_desc":
+					games = games.OrderByDescending(g => g.Price);
 					break;
 				default:
 					ViewData["DefaultFilterVisibility"] = "hidden";
-					games = games.OrderBy(g => g.GameName);
+					games = games.OrderBy(g => g.Name);
 					break;
 			}
 
@@ -77,25 +77,22 @@ namespace CS4790Assignment3.Controllers
 
 			var game = await _context.Games.SingleOrDefaultAsync(m => m.GameID == id);
 			var reviews = _context.Reviews.Where(r => r.Game.GameID == id);
-			//var publisher = await _context.Publishers.SingleOrDefaultAsync(p => p.PublisherID == game.Publisher.PublisherID);
+			var publisher = await _context.Publishers.SingleOrDefaultAsync(p => p.PublisherID == game.Publisher.PublisherID);
 
-			if (game == null || reviews == null) //|| publisher == null
+			if (game == null || reviews == null || publisher == null) //
 			{
 				return NotFound();
 			}
 
-			//I don't think this is right... But, it's combining Game, Publisher and Review into one viewmodel, which is then passed to the view..
+			//It's a literal model... That combines others... And is given to the view...
 			GameDetails returnModel = new GameDetails()
 			{
 				GameID = game.GameID,
-				GameName = game.GameName,
-				//Note: These ones are hardcoded as _context.Publishers keeps emptying itself...
-				PublisherName = "TEMP", //publisher.PublisherName,
-				PublisherIsIndie = false, // publisher.IsIndie,
-				PublisherIsTripleA = true, // publisher.IsTripleA,
+				Name = game.Name,
+				PublisherName = game.Publisher.PublisherName,
 				Genre = game.Genre,
-				HoursPlayed = game.HoursPlayed,
-				IsCompleted = game.IsCompleted,
+				Price = game.Price,
+				AlreadyOwned = game.AlreadyOwned,
 				Reviews = reviews.ToList()
 			};
 

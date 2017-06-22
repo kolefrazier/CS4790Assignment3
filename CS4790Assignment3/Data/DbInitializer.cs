@@ -18,31 +18,6 @@ namespace CS4790Assignment3.Data
 				return;
 			}
 
-			//Games
-			var games = new Game[] 
-			{
-				new Game { GameName = "The Binding of Isaac: Rebirth", CurrentlyPlaying = false, Genre = GameGenre.Roguelike, HoursPlayed = 58, IsCompleted = false, Price = 15.0, IsOnlineMultiplayer = false},
-				new Game { GameName = "Team Fortress 2", CurrentlyPlaying = true, Genre = GameGenre.FirstPersonShooter, HoursPlayed = 300, IsCompleted = false, Price = 0, IsOnlineMultiplayer = true},
-				new Game { GameName = "Arma III", CurrentlyPlaying = false, Genre = GameGenre.FirstPersonShooter, HoursPlayed = 20, IsCompleted = false, Price = 30.0, IsOnlineMultiplayer = true},
-				new Game { GameName = "Ori and the Blind Forest", CurrentlyPlaying = false, Genre = GameGenre.Platformer, HoursPlayed = 22, IsCompleted = true, Price = 20.0, IsOnlineMultiplayer = false},
-				new Game { GameName = "Everspace", CurrentlyPlaying = false, Genre = GameGenre.FirstPersonShooter, HoursPlayed = 15.6, IsCompleted = false, Price = 20.0, IsOnlineMultiplayer = false},
-				new Game { GameName = "The Escapists", CurrentlyPlaying = true, Genre = GameGenre.Roguelike, HoursPlayed = 2, IsCompleted = false, Price = 10.0, IsOnlineMultiplayer = false},
-				new Game { GameName = "Garry's Mod", CurrentlyPlaying = false, Genre = GameGenre.FirstPersonShooter, HoursPlayed = 45, IsCompleted = false, Price = 5.0, IsOnlineMultiplayer = true},
-				new Game { GameName = "FTL", CurrentlyPlaying = false, Genre = GameGenre.Roguelike, HoursPlayed = 20, IsCompleted = false, Price = 12.0, IsOnlineMultiplayer = false},
-				new Game { GameName = "Half-Life 2", CurrentlyPlaying = false, Genre = GameGenre.FirstPersonShooter, HoursPlayed = 20, IsCompleted = false, Price = 30.0, IsOnlineMultiplayer = false},
-				new Game { GameName = "GTAV", CurrentlyPlaying = true, Genre = GameGenre.Action, HoursPlayed = 20, IsCompleted = false, Price = 30.0, IsOnlineMultiplayer = true},
-				new Game { GameName = "Hyper Light Drifer", CurrentlyPlaying = false, Genre = GameGenre.Action, HoursPlayed = 20, IsCompleted = false, Price = 30.0, IsOnlineMultiplayer = false},
-				new Game { GameName = "Amnesia: The Dark Descent", CurrentlyPlaying = false, Genre = GameGenre.Horror, HoursPlayed = 8, IsCompleted = false, Price = 20.0, IsOnlineMultiplayer = false},
-				new Game { GameName = "Dark Souls: Prepare to Die", CurrentlyPlaying = true, Genre = GameGenre.Adventure, HoursPlayed = 50, IsCompleted = true, Price = 20.0, IsOnlineMultiplayer = true},
-				new Game { GameName = "Race the Sun", CurrentlyPlaying = false, Genre = GameGenre.Action, HoursPlayed = 4, IsCompleted = false, Price = 5.0, IsOnlineMultiplayer = false},
-				new Game { GameName = "Tales of Zestiria", CurrentlyPlaying = false, Genre = GameGenre.RPG, HoursPlayed = 25, IsCompleted = false, Price = 60.0, IsOnlineMultiplayer = false}
-			};
-			foreach (Game g in games)
-			{
-				context.Games.Add(g);
-			}
-			context.SaveChanges();
-
 			//Publishers
 			var publishers = new Publisher[]
 			{
@@ -52,51 +27,80 @@ namespace CS4790Assignment3.Data
 				new Publisher { PublisherName = "Tom Hanks", IsTripleA = false, IsIndie = true},
 				new Publisher { PublisherName = "Symphony Software", IsTripleA = true, IsIndie = false}
 			};
+
 			foreach (Publisher p in publishers)
 			{
 				context.Publishers.Add(p);
 			}
 			context.SaveChanges();
-			
-			//Reviews
-			var Review = new Review[]
+
+			//Games
+			var games = new Game[] 
 			{
-				new Review { SubmissionDate = DateTime.Parse("2017-01-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!"},
-				new Review { SubmissionDate = DateTime.Parse("2016-02-21"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!"},
-				new Review { SubmissionDate = DateTime.Parse("2014-03-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it." },
-				new Review { SubmissionDate = DateTime.Parse("2011-04-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. But no sequal in sight, story inconclusive."},
-				new Review { SubmissionDate = DateTime.Parse("2013-05-04"), DoesRecommend = false, ReviewContent = "Way too scary!"},
-				new Review { SubmissionDate = DateTime.Parse("2016-06-12"), DoesRecommend = true, ReviewContent = "Easy but fantastic!"},
-				new Review { SubmissionDate = DateTime.Parse("2017-07-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!"},
-				new Review { SubmissionDate = DateTime.Parse("2012-08-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it." },
-				new Review { SubmissionDate = DateTime.Parse("2010-09-09"), DoesRecommend = false, ReviewContent = "Great game."},
-				new Review { SubmissionDate = DateTime.Parse("2009-10-04"), DoesRecommend = false, ReviewContent = "Way too scary!"},
-				new Review { SubmissionDate = DateTime.Parse("2008-11-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!"},
-				new Review { SubmissionDate = DateTime.Parse("2007-12-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!"},
-				new Review { SubmissionDate = DateTime.Parse("2006-11-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it." },
-				new Review { SubmissionDate = DateTime.Parse("2005-10-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. Story inconclusive."},
-				new Review { SubmissionDate = DateTime.Parse("2012-09-04"), DoesRecommend = false, ReviewContent = "Way too scary!"},
-				new Review { SubmissionDate = DateTime.Parse("2013-08-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!"},
-				new Review { SubmissionDate = DateTime.Parse("2014-07-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!"},
-				new Review { SubmissionDate = DateTime.Parse("2015-06-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it." },
-				new Review { SubmissionDate = DateTime.Parse("2009-05-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. But no sequal in sight."},
-				new Review { SubmissionDate = DateTime.Parse("2010-04-04"), DoesRecommend = false, ReviewContent = "Way too scary!"}
+				new Game { Name = "The Binding of Isaac: Rebirth", Genre = "Roguelike", Price = 15.0, IsOnlineMultiplayer = false, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 1) },
+				new Game { Name = "Team Fortress 2", Genre = "First Person Shooter", Price = 0, IsOnlineMultiplayer = true, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 1) },
+				new Game { Name = "Arma III", Genre = "First Person Shooter", Price = 30.0, IsOnlineMultiplayer = true, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 1) },
+				new Game { Name = "Ori and the Blind Forest", Genre = "Platformer", Price = 20.0, IsOnlineMultiplayer = false, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 2) },
+				new Game { Name = "The Escapists", Genre = "Roguelike", Price = 10.0, IsOnlineMultiplayer = false, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 2) },
+				new Game { Name = "Garry's Mod", Genre = "First Person Shooter", Price = 5.0, IsOnlineMultiplayer = true, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 2) },
+				new Game { Name = "FTL", Genre = "Roguelike", Price = 12.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 3) },
+				new Game { Name = "Half-Life 2", Genre = "First Person Shooter", Price = 30.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 3) },
+				new Game { Name = "GTAV", Genre = "Action", Price = 30.0, IsOnlineMultiplayer = true, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 3) },
+				new Game { Name = "Hyper Light Drifer", Genre = "Action", Price = 30.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 4) },
+				new Game { Name = "Amnesia: The Dark Descent", Genre = "Horror", Price = 20.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 4) },
+				new Game { Name = "Dark Souls: Prepare to Die", Genre = "Adventure", Price = 20.0, IsOnlineMultiplayer = true, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 4) },
+				new Game { Name = "Race the Sun", Genre = "Action", Price = 5.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 5) },
+				new Game { Name = "Tales of Zestiria", Genre = "RPG", Price = 60.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 5) },
+				new Game { Name = "Witcher 3", Genre = "RPG", Price = 60.0, IsOnlineMultiplayer = false, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 5) }
 			};
-			foreach (Review r in Review)
+
+			foreach (Game g in games)
+			{
+				context.Games.Add(g);
+			}
+			context.SaveChanges();
+
+			//Reviews
+			var reviews = new Review[]
+			{
+				new Review { SubmissionDate = DateTime.Parse("2017-01-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!", Game = games.FirstOrDefault(g => g.GameID == 1)},
+				new Review { SubmissionDate = DateTime.Parse("2016-02-21"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 2)},
+				new Review { SubmissionDate = DateTime.Parse("2014-03-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 3) },
+				new Review { SubmissionDate = DateTime.Parse("2011-04-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. But no sequal in sight, story inconclusive.", Game = games.FirstOrDefault(g => g.GameID == 4)},
+				new Review { SubmissionDate = DateTime.Parse("2013-05-04"), DoesRecommend = false, ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 5)},
+				new Review { SubmissionDate = DateTime.Parse("2016-06-12"), DoesRecommend = true, ReviewContent = "Easy but fantastic!", Game = games.FirstOrDefault(g => g.GameID == 1)},
+				new Review { SubmissionDate = DateTime.Parse("2017-07-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 6)},
+				new Review { SubmissionDate = DateTime.Parse("2012-08-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 7) },
+				new Review { SubmissionDate = DateTime.Parse("2010-09-09"), DoesRecommend = false, ReviewContent = "Great game.", Game = games.FirstOrDefault(g => g.GameID == 8)},
+				new Review { SubmissionDate = DateTime.Parse("2009-10-04"), DoesRecommend = false, ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 9)},
+				new Review { SubmissionDate = DateTime.Parse("2008-11-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!", Game = games.FirstOrDefault(g => g.GameID == 10)},
+				new Review { SubmissionDate = DateTime.Parse("2007-12-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 11)},
+				new Review { SubmissionDate = DateTime.Parse("2006-11-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 12) },
+				new Review { SubmissionDate = DateTime.Parse("2005-10-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. Story inconclusive.", Game = games.FirstOrDefault(g => g.GameID == 13)},
+				new Review { SubmissionDate = DateTime.Parse("2012-09-04"), DoesRecommend = false, ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 14)},
+				new Review { SubmissionDate = DateTime.Parse("2013-08-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!", Game = games.FirstOrDefault(g => g.GameID == 15)},
+				new Review { SubmissionDate = DateTime.Parse("2014-07-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 1)},
+				new Review { SubmissionDate = DateTime.Parse("2015-06-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 2) },
+				new Review { SubmissionDate = DateTime.Parse("2009-05-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. But no sequal in sight.", Game = games.FirstOrDefault(g => g.GameID == 3)},
+				new Review { SubmissionDate = DateTime.Parse("2010-04-04"), DoesRecommend = false, ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 4)}
+			};
+
+			foreach (Review r in reviews)
 			{
 				context.Reviews.Add(r);
 			}
 			context.SaveChanges();
 
 			//Screenshots
-			var Screenshot = new Screenshot[]
+			var screenshots = new Screenshot[]
 			{
 				new Screenshot { CaptureTimestamp = DateTime.Parse("2017-02-02"), LocalPath = "#", Category = ScreenshotCategory.Achievement, SourceGame = "The Binding of Isaac: Rebirth" },
 				new Screenshot { CaptureTimestamp = DateTime.Parse("2016-12-28"), LocalPath = "#", Category = ScreenshotCategory.Deathcam, SourceGame = "Team Fortress 2"},
 				new Screenshot { CaptureTimestamp = DateTime.Parse("2016-12-29"), LocalPath = "#", Category = ScreenshotCategory.Deathcam, SourceGame = "Team Fortress 2"},
 				new Screenshot { CaptureTimestamp = DateTime.Parse("2016-11-13"), LocalPath = "#", Category = ScreenshotCategory.Glitch, SourceGame = "Everspace"}
 			};
-			foreach (Screenshot s in Screenshot)
+			
+			foreach (Screenshot s in screenshots)
 			{
 				context.Screenshots.Add(s);
 			}

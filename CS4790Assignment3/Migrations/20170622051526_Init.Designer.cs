@@ -9,7 +9,7 @@ using CS4790Assignment3.Models;
 namespace CS4790Assignment3.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20170615043624_Init")]
+    [Migration("20170622051526_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,18 +23,13 @@ namespace CS4790Assignment3.Migrations
                     b.Property<int>("GameID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("CurrentlyPlaying");
+                    b.Property<bool>("AlreadyOwned");
 
-                    b.Property<string>("GameName")
-                        .IsRequired();
-
-                    b.Property<int>("Genre");
-
-                    b.Property<double>("HoursPlayed");
-
-                    b.Property<bool>("IsCompleted");
+                    b.Property<string>("Genre");
 
                     b.Property<bool>("IsOnlineMultiplayer");
+
+                    b.Property<string>("Name");
 
                     b.Property<double>("Price");
 
@@ -52,8 +47,6 @@ namespace CS4790Assignment3.Migrations
                     b.Property<int>("PublisherID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("GameID");
-
                     b.Property<bool>("IsIndie");
 
                     b.Property<bool>("IsTripleA");
@@ -70,17 +63,17 @@ namespace CS4790Assignment3.Migrations
                     b.Property<int>("ReviewID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AuthorID");
+                    b.Property<string>("Author");
 
                     b.Property<bool>("DoesRecommend");
 
                     b.Property<int?>("GameID");
 
-                    b.Property<DateTime>("LastUpdateDate");
-
                     b.Property<string>("ReviewContent");
 
                     b.Property<DateTime>("SubmissionDate");
+
+                    b.Property<string>("Title");
 
                     b.HasKey("ReviewID");
 
@@ -114,7 +107,7 @@ namespace CS4790Assignment3.Migrations
             modelBuilder.Entity("CS4790Assignment3.Models.Game", b =>
                 {
                     b.HasOne("CS4790Assignment3.Models.Publisher", "Publisher")
-                        .WithMany("PublishedGames")
+                        .WithMany("Games")
                         .HasForeignKey("PublisherID");
                 });
 
@@ -128,7 +121,7 @@ namespace CS4790Assignment3.Migrations
             modelBuilder.Entity("CS4790Assignment3.Models.Screenshot", b =>
                 {
                     b.HasOne("CS4790Assignment3.Models.Game", "Game")
-                        .WithMany("Screenshots")
+                        .WithMany()
                         .HasForeignKey("GameID");
                 });
         }
