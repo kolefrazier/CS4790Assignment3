@@ -9,7 +9,7 @@ using CS4790Assignment3.Models;
 namespace CS4790Assignment3.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20170622051526_Init")]
+    [Migration("20170623051353_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,15 +25,17 @@ namespace CS4790Assignment3.Migrations
 
                     b.Property<bool>("AlreadyOwned");
 
-                    b.Property<string>("Genre");
+                    b.Property<string>("Genre")
+                        .IsRequired();
 
                     b.Property<bool>("IsOnlineMultiplayer");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<double>("Price");
 
-                    b.Property<int?>("PublisherID");
+                    b.Property<int>("PublisherID");
 
                     b.HasKey("GameID");
 
@@ -108,7 +110,8 @@ namespace CS4790Assignment3.Migrations
                 {
                     b.HasOne("CS4790Assignment3.Models.Publisher", "Publisher")
                         .WithMany("Games")
-                        .HasForeignKey("PublisherID");
+                        .HasForeignKey("PublisherID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CS4790Assignment3.Models.Review", b =>

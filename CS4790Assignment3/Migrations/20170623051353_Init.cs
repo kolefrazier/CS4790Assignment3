@@ -31,11 +31,11 @@ namespace CS4790Assignment3.Migrations
                     GameID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AlreadyOwned = table.Column<bool>(nullable: false),
-                    Genre = table.Column<string>(nullable: true),
+                    Genre = table.Column<string>(nullable: false),
                     IsOnlineMultiplayer = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    PublisherID = table.Column<int>(nullable: true)
+                    PublisherID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,7 +45,7 @@ namespace CS4790Assignment3.Migrations
                         column: x => x.PublisherID,
                         principalTable: "Publisher",
                         principalColumn: "PublisherID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

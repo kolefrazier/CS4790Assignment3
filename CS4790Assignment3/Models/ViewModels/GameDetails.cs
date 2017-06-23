@@ -6,14 +6,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CS4790Assignment3.Models.ViewModels
 {
+	/// <summary>
+	/// Connects all game-detail models together to allow access to full details in a single ViewModel.
+	/// </summary>
 	public class GameDetails
 	{
-		public int GameID { get; set; }
-		public string Name { get; set; }
-		public string PublisherName { get; set; }
-		public string Genre { get; set; }
-		public double Price { get; set; }
-		public bool AlreadyOwned { get; set; }
+		public Game Game { get; set; }
+		public Publisher Publisher { get; set; }
 		public List<Review> Reviews { get; set; }
 	}
 }

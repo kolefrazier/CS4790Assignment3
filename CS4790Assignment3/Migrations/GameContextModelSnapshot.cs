@@ -24,15 +24,17 @@ namespace CS4790Assignment3.Migrations
 
                     b.Property<bool>("AlreadyOwned");
 
-                    b.Property<string>("Genre");
+                    b.Property<string>("Genre")
+                        .IsRequired();
 
                     b.Property<bool>("IsOnlineMultiplayer");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<double>("Price");
 
-                    b.Property<int?>("PublisherID");
+                    b.Property<int>("PublisherID");
 
                     b.HasKey("GameID");
 
@@ -107,7 +109,8 @@ namespace CS4790Assignment3.Migrations
                 {
                     b.HasOne("CS4790Assignment3.Models.Publisher", "Publisher")
                         .WithMany("Games")
-                        .HasForeignKey("PublisherID");
+                        .HasForeignKey("PublisherID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CS4790Assignment3.Models.Review", b =>

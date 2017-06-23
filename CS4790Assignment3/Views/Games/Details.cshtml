@@ -11,8 +11,8 @@
 
 <div class="row"><h2 class="text-center">Game Details</h2></div>
 <div class="row col-lg-12 col-md-12 text-center">
-	<a asp-action="Edit" asp-route-id="@(Model.GameID)">Edit</a> |
-	<a asp-action="Delete" asp-route-id="@(Model.GameID)">Delete</a>
+	<a asp-action="Edit" asp-route-id="@(Model.Game.GameID)">Edit</a> |
+	<a asp-action="Delete" asp-route-id="@(Model.Game.GameID)">Delete</a>
 	<br /><br />
 </div>
 
@@ -20,31 +20,39 @@
 	<div class="col-lg-6 col-md-6">
 		<dl class="dl-horizontal">
 			<dt>
-				@Html.DisplayNameFor(model => model.GameName)
+				@Html.DisplayNameFor(model => model.Game.Name)
 			</dt>
 			<dd>
-				@Html.DisplayFor(model => model.GameName)
+				@Html.DisplayFor(model => model.Game.Name)
 			</dd>
 
 			<dt>
-				@Html.DisplayNameFor(model => model.Genre)
+				@Html.DisplayNameFor(model => model.Game.Genre)
 			</dt>
 			<dd>
-				@Html.DisplayFor(model => model.Genre)
+				@Html.DisplayFor(model => model.Game.Genre)
 			</dd>
 
 			<dt>
-				@Html.DisplayNameFor(model => model.HoursPlayed)
+				@Html.DisplayNameFor(model => model.Game.Price)
 			</dt>
 			<dd>
-				@Html.DisplayFor(model => model.HoursPlayed)
+				@Html.DisplayFor(model => model.Game.Price)
 			</dd>
 
 			<dt>
-				@Html.DisplayNameFor(model => model.IsCompleted)
+				Online Capabilities
 			</dt>
 			<dd>
-				@Html.DisplayFor(model => model.IsCompleted)
+				@{ 
+					if(Model.Game.IsOnlineMultiplayer == true)
+					{
+						<p>Online Multiplayer Available</p>
+					} else
+					{
+						<p>Offline Singleplayer Only</p>
+					}
+				}
 			</dd>
 		</dl>
 	</div>
@@ -52,24 +60,25 @@
 	<div class="col-lg-6 col-md-6">
 		<dl class="dl-horizontal">
 			<dt>
-				@Html.DisplayNameFor(model => model.PublisherName)
+				@Html.DisplayNameFor(model => model.Publisher.PublisherName)
 			</dt>
 			<dd>
-				@Html.DisplayFor(model => model.PublisherName)
+				@Html.DisplayFor(model => model.Publisher.PublisherName)
 			</dd>
 
 			<dt>
-				@Html.DisplayNameFor(model => model.PublisherIsIndie)
+				Publisher Status
 			</dt>
 			<dd>
-				@Html.DisplayFor(model => model.PublisherIsIndie)
-			</dd>
-
-			<dt>
-				@Html.DisplayNameFor(model => model.PublisherIsTripleA)
-			</dt>
-			<dd>
-				@Html.DisplayFor(model => model.PublisherIsTripleA)
+				@{ 
+					if(Model.Publisher.IsIndie == true)
+					{
+						<p>Indie</p>
+					} else if(Model.Publisher.IsTripleA == true)
+					{
+						<p>Triple-A</p>
+					}
+				}
 			</dd>
 		</dl>
 	</div>
@@ -85,20 +94,34 @@
 	<table class="table table-hover">
 		<tr>
 			<th>
-				Does Recommend
+				Author
 			</th>
 			<th>
-				Review Date
+				Recommended
 			</th>
 			<th>
-				Review Content
+				Submission Date
+			</th>
+			<th>
+				Review
 			</th>
 		</tr>
 		@foreach (var review in Model.Reviews)
 		{
 			<tr>
 				<td>
-					@Html.DisplayFor(r => review.DoesRecommend)
+					@Html.DisplayFor(r => review.Author)
+				</td>
+				<td>
+					@{ 
+						if(review.DoesRecommend == true)
+						{
+							<div class="text-success"><b>Yes</b></div>
+						} else
+						{
+							<div class="text-danger"><b>No</b></div>
+						}
+					}
 				</td>
 				<td>
 					@Html.DisplayFor(r => review.SubmissionDate)
