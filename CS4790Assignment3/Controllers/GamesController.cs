@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using CS4790Assignment3.Data;
 using CS4790Assignment3.Models;
 using CS4790Assignment3.Models.ViewModels;
+using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Http;
 
 namespace CS4790Assignment3.Controllers
 {
@@ -20,14 +22,34 @@ namespace CS4790Assignment3.Controllers
 			_context = context;    
 		}
 
+		// GET: Login
+		public IActionResult Login()
+		{
+			return View();
+		}
+
+		// POST: Login
+
 		// GET: Games
 		public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page)
 		{
+			//--- From Login page? ---
+			//1 - Get user from DB
+			//get userid, username, userpassword from usertable where input username = usertable.username
+			//2- Set Session data
+			//HttpContext.Session.SetString(SessionKeyName, UsernameFromDB);
+			//HttpContext.SessionSetInt32(SessionKeyUserID, UserIDFromDB);
+			//Set ViewData["IsSignedIn"] = true;
+
+			//--- After Login Call---
+			//If signed in, return signed in data. Otherwise, set user viewmodel to null for the View to format.
+
 			//return View(await _context.Games.ToListAsync());
 			ViewData["CurrentSort"] = sortOrder;
 			ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 			ViewData["HoursPlayed"] = sortOrder == "Price" ? "price_desc" : "Price";
 			ViewData["currentFilter"] = searchString;
+			ViewData["Message"] = HttpContext.Session.GetString("message");
 
 			if (searchString != null)
 			{

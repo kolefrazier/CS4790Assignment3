@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using CS4790Assignment3.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Session;
 
 namespace CS4790Assignment3
 {
@@ -36,6 +37,14 @@ namespace CS4790Assignment3
 			);
 
 			services.AddMvc();
+
+			//Session stuff
+			services.AddDistributedMemoryCache();
+			services.AddSession(options =>
+			{
+				options.IdleTimeout = TimeSpan.FromMinutes(30);
+				options.CookieHttpOnly = true;
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +64,7 @@ namespace CS4790Assignment3
 			}
 
 			app.UseStaticFiles();
-
+			app.UseSession();
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(

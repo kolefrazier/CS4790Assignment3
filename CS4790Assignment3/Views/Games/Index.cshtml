@@ -73,7 +73,7 @@
 		   asp-route-sortOrder="@ViewData["CurrentSort"]"
 		   asp-route-page="@(Model.PageIndex - 1)"
 		   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-		   class="btn">
+		   class="btn @prevDisabled">
 			Previous
 		</a>
 
@@ -81,7 +81,7 @@
 		   asp-route-sortOrder="@ViewData["CurrentSort"]"
 		   asp-route-page="@(Model.PageIndex + 1)"
 		   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-		   class="btn">
+		   class="btn @nextDisabled">
 			Next
 		</a>
 
