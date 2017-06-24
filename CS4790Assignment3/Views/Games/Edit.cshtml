@@ -16,32 +16,33 @@
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6">
+				<input type="hidden" asp-for="PublisherID" />
 				<div class="form-group">
-					<label asp-for="GameName" class="col-md-4 control-label"></label>
+					<label asp-for="Name" class="col-md-4 control-label"></label>
 					<div class="col-md-8">
-						<input asp-for="GameName" type="text" class="form-control" />
-						<span asp-validation-for="GameName" class="text-danger"></span>
+						<input asp-for="Name" type="text" class="form-control" />
+						<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label asp-for="Genre" class="col-md-4 control-label"></label>
+					<div class="col-md-8">
+						<input asp-for="Genre" type="text" class="form-control" />
+						<span asp-validation-for="Genre" class="text-danger"></span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label asp-for="Price" class="col-md-4 control-label"></label>
 					<div class="col-md-8">
-						<input asp-for="Price" type="number" class="form-control" />
+						<input asp-for="Price" type="number" step="0.01" min="0" class="form-control" />
 						<span asp-validation-for="Price" class="text-danger"></span>
 					</div>
 				</div>
 				<div class="form-group">
-					<label asp-for="HoursPlayed" class="col-md-4 control-label"></label>
+					<label asp-for="AlreadyOwned" class="col-md-4 control-label"></label>
 					<div class="col-md-8">
-						<input asp-for="HoursPlayed" type="number" class="form-control" />
-						<span asp-validation-for="HoursPlayed" class="text-danger"></span>
-					</div>
-				</div>
-				<div class="form-group">
-					<label asp-for="IsCompleted" class="col-md-4 control-label"></label>
-					<div class="col-md-8">
-						<input asp-for="IsCompleted" type="checkbox" class="form-control" />
-						<span asp-validation-for="IsCompleted" class="text-danger"></span>
+						<input asp-for="AlreadyOwned" type="checkbox" class="form-control" />
+						<span asp-validation-for="AlreadyOwned" class="text-danger"></span>
 					</div>
 				</div>
 				<div class="form-group">
@@ -52,10 +53,10 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label asp-for="CurrentlyPlaying" class="col-md-4 control-label"></label>
+					<label asp-for="PublisherID" class="col-md-4 control-label"></label>
 					<div class="col-md-8">
-						<input asp-for="CurrentlyPlaying" type="checkbox" class="form-control" />
-						<span asp-validation-for="CurrentlyPlaying" class="text-danger"></span>
+						<input asp-for="PublisherID" type="number" class="form-control" />
+						<span asp-validation-for="PublisherID" class="text-danger"></span>
 					</div>
 				</div>
 			</div>

@@ -126,7 +126,7 @@ namespace CS4790Assignment3.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("GameID,Name,Genre,Price,HoursPlayed,IsCompleted,CurrentlyPlaying,IsOnlineMultiplayer")] Game game)
+		public async Task<IActionResult> Create([Bind("GameID,Name,Genre,Price,AlreadyOwned,IsOnlineMultiplayer")] Game game)
 		{
 			if (ModelState.IsValid)
 			{
@@ -159,7 +159,7 @@ namespace CS4790Assignment3.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("GameID,Name,Genre,Price,HoursPlayed,IsCompleted,CurrentlyPlaying,IsOnlineMultiplayer")] Game game)
+		public async Task<IActionResult> Edit(int id, [Bind("GameID,Name,Genre,Price,AlreadyOwned,IsOnlineMultiplayer,PublisherID")] Game game)
 		{
 			if (id != game.GameID)
 			{
@@ -184,10 +184,11 @@ namespace CS4790Assignment3.Controllers
 						throw;
 					}
 				}
-				return RedirectToAction("Index");
+				return RedirectToAction("Details", game.GameID);
 			}
 			ViewData["PublisherIDs"] = new SelectList(_context.Publishers, "PublisherID", "PublisherID");
 			return View(game);
+			
 		}
 
 		// GET: Games/Delete/5
