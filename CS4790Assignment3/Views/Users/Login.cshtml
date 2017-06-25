@@ -1,0 +1,59 @@
+@model CS4790Assignment3.Models.User
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Login";
+}
+
+@{
+	var IsValidated = ViewData["IsValidated"];
+	if (IsValidated == null)
+	{
+		@using (Html.BeginForm())
+		{
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4 text-center">
+					<fieldset>
+						<legend>Login</legend>
+						<div class="text-danger text-center list-unstyled">
+							@Html.ValidationSummary(true, "Login failed:")
+						</div>
+						<br />
+
+						<div class="editor-label">
+							@Html.LabelFor(u => u.Username)
+						</div>
+						<div class="editor-field">
+							@Html.TextBoxFor(u => u.Username)
+						</div>
+						<div class="text-danger">
+							@Html.ValidationMessageFor(u => u.Username)
+						</div>
+						<br />
+
+						<div class="editor-label">
+							@Html.LabelFor(u => u.Password)
+						</div>
+						<div class="editor-field">
+							@Html.PasswordFor(u => u.Password)
+						</div>
+						<div class="text-danger">
+							@Html.ValidationMessageFor(u => u.Password)
+						</div>
+						<br />
+
+						<input type="submit" value="Log In" />
+					</fieldset>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		}
+	} else
+	{
+		<div class="row">
+			<div class="col-md-12">You are already authenticated, @ViewData["Username"]. <a asp-action="Index" asp-controller="Games">Return to home page.</a></div>
+		</div>
+
+	}
+}
+

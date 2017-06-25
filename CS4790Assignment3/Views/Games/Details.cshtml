@@ -4,28 +4,32 @@
 	ViewData["Title"] = "Game Details";
 }
 
-@{ 
-//Display game details by game.
-//This utilzies a viewmodel!!
-}
-
-<div class="row"><h2 class="text-center">Game Details</h2></div>
-<div class="row col-lg-12 col-md-12 text-center">
-	<a asp-action="Edit" asp-route-id="@(Model.Game.GameID)">Edit</a> |
-	<a asp-action="Delete" asp-route-id="@(Model.Game.GameID)">Delete</a>
+<div class="row">
+	<h2 class="text-center">
+		@(Model.Game.Name)
+	</h2>
 	<br /><br />
 </div>
+
+@{
+	var IsValidated = ViewData["IsValidated"];
+	if (IsValidated != null)
+	{
+		var Role = (string) ViewData["Role"];
+		if (Role == "Administrator")
+		{
+			<div class="row col-lg-12 col-md-12 text-center">
+				<a asp-action="Edit" asp-route-id="@(Model.Game.GameID)">Edit</a> |
+				<a asp-action="Delete" asp-route-id="@(Model.Game.GameID)">Delete</a>
+				<br /><br />
+			</div>
+		}
+	}
+}
 
 <div class="row">
 	<div class="col-lg-6 col-md-6">
 		<dl class="dl-horizontal">
-			<dt>
-				@Html.DisplayNameFor(model => model.Game.Name)
-			</dt>
-			<dd>
-				@Html.DisplayFor(model => model.Game.Name)
-			</dd>
-
 			<dt>
 				@Html.DisplayNameFor(model => model.Game.Genre)
 			</dt>
@@ -37,18 +41,28 @@
 				@Html.DisplayNameFor(model => model.Game.Price)
 			</dt>
 			<dd>
-				@Html.DisplayFor(model => model.Game.Price)
+				@{
+					if (Model.Game.AlreadyOwned == true)
+					{
+						<div><p style="text-decoration: line-through;">@Html.DisplayFor(model => model.Game.Price)</p> In your collection.</div>
+					}
+					else
+					{
+						@Html.DisplayFor(model => model.Game.Price)
+					}
+				}
 			</dd>
 
 			<dt>
 				Online Capabilities
 			</dt>
 			<dd>
-				@{ 
-					if(Model.Game.IsOnlineMultiplayer == true)
+				@{
+					if (Model.Game.IsOnlineMultiplayer == true)
 					{
 						<p>Online Multiplayer Available</p>
-					} else
+					}
+					else
 					{
 						<p>Offline Singleplayer Only</p>
 					}
@@ -70,11 +84,12 @@
 				Publisher Status
 			</dt>
 			<dd>
-				@{ 
-					if(Model.Publisher.IsIndie == true)
+				@{
+					if (Model.Publisher.IsIndie == true)
 					{
 						<p>Indie</p>
-					} else if(Model.Publisher.IsTripleA == true)
+					}
+					else if (Model.Publisher.IsTripleA == true)
 					{
 						<p>Triple-A</p>
 					}
@@ -113,11 +128,12 @@
 					@Html.DisplayFor(r => review.Author)
 				</td>
 				<td>
-					@{ 
-						if(review.DoesRecommend == true)
+					@{
+						if (review.DoesRecommend == true)
 						{
 							<div class="text-success"><b>Yes</b></div>
-						} else
+						}
+						else
 						{
 							<div class="text-danger"><b>No</b></div>
 						}
@@ -130,6 +146,6 @@
 					@Html.DisplayFor(r => review.ReviewContent)
 				</td>
 			</tr>
-		}
+						}
 	</table>
 </div>

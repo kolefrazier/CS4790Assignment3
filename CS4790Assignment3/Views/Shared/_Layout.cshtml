@@ -22,25 +22,28 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<h1>Game Library - Assignment 3</h1>
-				<h3>Kole Frazier</h3>
+				<h1><a asp-action="Index" asp-controller="Games">Games Store</a></h1>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-3 col-md-2"></div>
-			<div class="col-lg-6 col-md-8">
-				<nav class="navbar text-center">
-					<ul class="nav navbar-nav">
-						<li><a asp-area="" asp-controller="Games" asp-action="Index">Home Page</a></li>
-						<li><a asp-area="" asp-controller="Games" asp-action="Reviews">Reviews</a></li>
-						<!--
-						<li><a asp-area="" asp-controller="Games" asp-action="GamesPublisher">Games by Publisher</a></li>
-						<li><a asp-area="" asp-controller="Games" asp-action="Screenshots">Screenshots</a></li>
-						-->
-					</ul>
-				</nav>
+			<div class="col-md-9"></div>
+			<div class="col-md-3">
+				@{
+					var IsValidated = ViewData["IsValidated"];
+					if (IsValidated == null)
+					{
+						<a asp-action="Login" asp-controller="Users">Login</a>
+					} else
+					{
+						<div>
+							<b>Welcome, @ViewData["Username"]!</b> <a asp-action="Logout" asp-controller="Users">Click here to logout.</a>
+							<h6>Your role is @ViewData["Role"] and your ID is @ViewData["UserID"].</h6>
+						</div>
+					}
+				}
+				
+				
 			</div>
-			<div class="col-lg-3 col-md-2"></div>
 		</div>
 		<div class="row text-center"><hr /></div>
 
@@ -51,7 +54,7 @@
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<hr />
-				<p>Kole Frazier - CS4790 Assignment 3</p>
+				<p>Kole Frazier - CS4790 Assignment 4</p>
 			</div>
 		</div>
 	</div>

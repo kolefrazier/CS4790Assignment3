@@ -28,6 +28,8 @@ namespace CS4790Assignment3.Data
 		public DbSet<Publisher> Publishers { get; set; }
 		public DbSet<Review> Reviews { get; set; }
 		public DbSet<Screenshot> Screenshots { get; set; }
+		public DbSet<User> Users { get; set; }
+		public DbSet<CartItem> CartItems { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -35,6 +37,8 @@ namespace CS4790Assignment3.Data
 			modelBuilder.Entity<Game>().ToTable("Game");
 			modelBuilder.Entity<Review>().ToTable("Review");
 			modelBuilder.Entity<Screenshot>().ToTable("Screenshot");
+			modelBuilder.Entity<User>().ToTable("User");
+			modelBuilder.Entity<CartItem>().ToTable("CartItem");
 		}
 	}
 }

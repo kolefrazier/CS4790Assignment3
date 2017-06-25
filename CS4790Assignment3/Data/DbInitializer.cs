@@ -63,26 +63,26 @@ namespace CS4790Assignment3.Data
 			//Reviews
 			var reviews = new Review[]
 			{
-				new Review { SubmissionDate = DateTime.Parse("2017-01-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!", Game = games.FirstOrDefault(g => g.GameID == 1)},
-				new Review { SubmissionDate = DateTime.Parse("2016-02-21"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 2)},
-				new Review { SubmissionDate = DateTime.Parse("2014-03-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 3) },
-				new Review { SubmissionDate = DateTime.Parse("2011-04-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. But no sequal in sight, story inconclusive.", Game = games.FirstOrDefault(g => g.GameID == 4)},
-				new Review { SubmissionDate = DateTime.Parse("2013-05-04"), DoesRecommend = false, ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 5)},
-				new Review { SubmissionDate = DateTime.Parse("2016-06-12"), DoesRecommend = true, ReviewContent = "Easy but fantastic!", Game = games.FirstOrDefault(g => g.GameID == 1)},
-				new Review { SubmissionDate = DateTime.Parse("2017-07-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 6)},
-				new Review { SubmissionDate = DateTime.Parse("2012-08-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 7) },
-				new Review { SubmissionDate = DateTime.Parse("2010-09-09"), DoesRecommend = false, ReviewContent = "Great game.", Game = games.FirstOrDefault(g => g.GameID == 8)},
-				new Review { SubmissionDate = DateTime.Parse("2009-10-04"), DoesRecommend = false, ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 9)},
-				new Review { SubmissionDate = DateTime.Parse("2008-11-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!", Game = games.FirstOrDefault(g => g.GameID == 10)},
-				new Review { SubmissionDate = DateTime.Parse("2007-12-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 11)},
-				new Review { SubmissionDate = DateTime.Parse("2006-11-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 12) },
-				new Review { SubmissionDate = DateTime.Parse("2005-10-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. Story inconclusive.", Game = games.FirstOrDefault(g => g.GameID == 13)},
-				new Review { SubmissionDate = DateTime.Parse("2012-09-04"), DoesRecommend = false, ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 14)},
-				new Review { SubmissionDate = DateTime.Parse("2013-08-12"), DoesRecommend = true, ReviewContent = "Difficult but fantastic roguelike!", Game = games.FirstOrDefault(g => g.GameID == 15)},
-				new Review { SubmissionDate = DateTime.Parse("2014-07-23"), DoesRecommend = true, ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 1)},
-				new Review { SubmissionDate = DateTime.Parse("2015-06-25"), DoesRecommend = true, ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 2) },
-				new Review { SubmissionDate = DateTime.Parse("2009-05-09"), DoesRecommend = false, ReviewContent = "Great game and fantastic story. But no sequal in sight.", Game = games.FirstOrDefault(g => g.GameID == 3)},
-				new Review { SubmissionDate = DateTime.Parse("2010-04-04"), DoesRecommend = false, ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 4)}
+				new Review { SubmissionDate = DateTime.Parse("2017-01-12"), DoesRecommend = true, Author = "Chuck", ReviewContent = "Difficult but fantastic roguelike!", Game = games.FirstOrDefault(g => g.GameID == 1)},
+				new Review { SubmissionDate = DateTime.Parse("2016-02-21"), DoesRecommend = true, Author = "Charles", ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 2)},
+				new Review { SubmissionDate = DateTime.Parse("2014-03-25"), DoesRecommend = true, Author = "Abby", ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 3) },
+				new Review { SubmissionDate = DateTime.Parse("2011-04-09"), DoesRecommend = false, Author = "Abigail", ReviewContent = "Great game and fantastic story. But no sequal in sight, story inconclusive.", Game = games.FirstOrDefault(g => g.GameID == 4)},
+				new Review { SubmissionDate = DateTime.Parse("2013-05-04"), DoesRecommend = false, Author = "Alex", ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 5)},
+				new Review { SubmissionDate = DateTime.Parse("2016-06-12"), DoesRecommend = true, Author = "Arnold", ReviewContent = "Easy but fantastic!", Game = games.FirstOrDefault(g => g.GameID == 1)},
+				new Review { SubmissionDate = DateTime.Parse("2017-07-23"), DoesRecommend = true, Author = "Beth", ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 6)},
+				new Review { SubmissionDate = DateTime.Parse("2012-08-25"), DoesRecommend = true, Author = "Bart", ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 7) },
+				new Review { SubmissionDate = DateTime.Parse("2010-09-09"), DoesRecommend = false, Author = "John", ReviewContent = "Great game.", Game = games.FirstOrDefault(g => g.GameID == 8)},
+				new Review { SubmissionDate = DateTime.Parse("2009-10-04"), DoesRecommend = false, Author = "Jacob", ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 9)},
+				new Review { SubmissionDate = DateTime.Parse("2008-11-12"), DoesRecommend = true, Author = "Jessica", ReviewContent = "Difficult but fantastic roguelike!", Game = games.FirstOrDefault(g => g.GameID == 10)},
+				new Review { SubmissionDate = DateTime.Parse("2007-12-23"), DoesRecommend = true, Author = "Jenna", ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 11)},
+				new Review { SubmissionDate = DateTime.Parse("2006-11-25"), DoesRecommend = true, Author = "Megan", ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 12) },
+				new Review { SubmissionDate = DateTime.Parse("2005-10-09"), DoesRecommend = false, Author = "Mark", ReviewContent = "Great game and fantastic story. Story inconclusive.", Game = games.FirstOrDefault(g => g.GameID == 13)},
+				new Review { SubmissionDate = DateTime.Parse("2012-09-04"), DoesRecommend = false, Author = "Caitlyn", ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 14)},
+				new Review { SubmissionDate = DateTime.Parse("2013-08-12"), DoesRecommend = true, Author = "Cynthia", ReviewContent = "Difficult but fantastic roguelike!", Game = games.FirstOrDefault(g => g.GameID == 15)},
+				new Review { SubmissionDate = DateTime.Parse("2014-07-23"), DoesRecommend = true, Author = "Jordan", ReviewContent = "Fluid controls, beautiful graphics and OST!", Game = games.FirstOrDefault(g => g.GameID == 1)},
+				new Review { SubmissionDate = DateTime.Parse("2015-06-25"), DoesRecommend = true, Author = "Jeff", ReviewContent = "I died a lot, and I enjoyed it.", Game = games.FirstOrDefault(g => g.GameID == 2) },
+				new Review { SubmissionDate = DateTime.Parse("2009-05-09"), DoesRecommend = false, Author = "Rachel", ReviewContent = "Great game and fantastic story. But no sequal in sight.", Game = games.FirstOrDefault(g => g.GameID == 3)},
+				new Review { SubmissionDate = DateTime.Parse("2010-04-04"), DoesRecommend = false, Author = "Ronald", ReviewContent = "Way too scary!", Game = games.FirstOrDefault(g => g.GameID == 4)}
 			};
 
 			foreach (Review r in reviews)
@@ -106,93 +106,17 @@ namespace CS4790Assignment3.Data
 			}
 			context.SaveChanges();
 
-			/*
-			//PublishedGames
-			var gamePublishers = new PublishedGames[]
+			var users = new User[]
 			{
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "The Binding of Isaac: Rebirth").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "No Third Games Software").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "Team Fortress 2").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "NSA-Backdoor Studios").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "Arma III").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "For Software").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "Ori and the Blind Forest").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "Tom Hanks").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "Everspace").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "Symphony Software").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "The Escapists").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "No Third Games Software").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "Garry's Mod").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "NSA-Backdoor Studios").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "FTL").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "For Software").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "Half-Life 2").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "Tom Hanks").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "GTAV").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "Symphony Software").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "Hyper Light Drifer").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "No Third Games Software").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "Amnesia: The Dark Descent").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "NSA-Backdoor Studios").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "Dark Souls: Prepare to Die").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "For Software").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "Race the Sun").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "Tom Hanks").PublisherID
-				},
-				new PublishedGames
-				{
-					GameID = games.Single(g => g.GameName == "Tales of Zestiria").GameID,
-					PublisherID = publishers.Single(p => p.PublisherName == "Symphony Software").PublisherID
-				}
+				new User{ Username = "Admin", Password = "Password123", Role = "Administrator" },
+				new User{ Username = "Normal", Password = "123Password", Role = "User"}
 			};
 
-			foreach (PublishedGames p in gamePublishers)
+			foreach (User u in users)
 			{
-				context.PublishedGames.Add(p);
+				context.Users.Add(u);
 			}
 			context.SaveChanges();
-			*/
 		}
 	}
 }

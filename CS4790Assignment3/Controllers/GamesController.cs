@@ -22,29 +22,22 @@ namespace CS4790Assignment3.Controllers
 			_context = context;    
 		}
 
-		// GET: Login
-		public IActionResult Login()
+		private void SetUserData()
 		{
-			return View();
+			if (HttpContext.Session.GetString("validated") == "true")
+			{
+				ViewData["IsValidated"] = HttpContext.Session.GetString("validated");
+				ViewData["Username"] = HttpContext.Session.GetString("username");
+				ViewData["UserID"] = HttpContext.Session.GetInt32("userid");
+				ViewData["Role"] = HttpContext.Session.GetString("role");
+			}
 		}
-
-		// POST: Login
 
 		// GET: Games
 		public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page)
 		{
-			//--- From Login page? ---
-			//1 - Get user from DB
-			//get userid, username, userpassword from usertable where input username = usertable.username
-			//2- Set Session data
-			//HttpContext.Session.SetString(SessionKeyName, UsernameFromDB);
-			//HttpContext.SessionSetInt32(SessionKeyUserID, UserIDFromDB);
-			//Set ViewData["IsSignedIn"] = true;
+			SetUserData(); //Far from proper. But it works, it's almost 1:00 am and this beer is good.
 
-			//--- After Login Call---
-			//If signed in, return signed in data. Otherwise, set user viewmodel to null for the View to format.
-
-			//return View(await _context.Games.ToListAsync());
 			ViewData["CurrentSort"] = sortOrder;
 			ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 			ViewData["HoursPlayed"] = sortOrder == "Price" ? "price_desc" : "Price";
@@ -97,6 +90,8 @@ namespace CS4790Assignment3.Controllers
 				return NotFound();
 			}
 
+			SetUserData();
+
 			var game = await _context.Games.SingleOrDefaultAsync(m => m.GameID == id);
 			var reviews = _context.Reviews.Where(r => r.Game.GameID == id).ToList<Review>();
 			var publisher = await _context.Publishers.SingleOrDefaultAsync(p => p.PublisherID == game.PublisherID);
@@ -139,6 +134,7 @@ namespace CS4790Assignment3.Controllers
 		// GET: Games/Create
 		public IActionResult Create()
 		{
+			SetUserData();
 			ViewData["PublisherID"] = new SelectList(_context.Publishers, "PublisherID", "PublisherID");
 			return View();
 		}
@@ -150,6 +146,7 @@ namespace CS4790Assignment3.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Create([Bind("GameID,Name,Genre,Price,AlreadyOwned,IsOnlineMultiplayer")] Game game)
 		{
+			SetUserData();
 			if (ModelState.IsValid)
 			{
 				_context.Add(game);
@@ -166,6 +163,8 @@ namespace CS4790Assignment3.Controllers
 			{
 				return NotFound();
 			}
+
+			SetUserData();
 
 			var game = await _context.Games.SingleOrDefaultAsync(m => m.GameID == id);
 			if (game == null)
@@ -187,6 +186,8 @@ namespace CS4790Assignment3.Controllers
 			{
 				return NotFound();
 			}
+
+			SetUserData();
 
 			if (ModelState.IsValid)
 			{
@@ -221,6 +222,8 @@ namespace CS4790Assignment3.Controllers
 				return NotFound();
 			}
 
+			SetUserData();
+
 			var game = await _context.Games
 				.SingleOrDefaultAsync(m => m.GameID == id);
 			if (game == null)
@@ -236,6 +239,7 @@ namespace CS4790Assignment3.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> DeleteConfirmed(int id)
 		{
+			SetUserData();
 			var game = await _context.Games.SingleOrDefaultAsync(m => m.GameID == id);
 			_context.Games.Remove(game);
 			await _context.SaveChangesAsync();

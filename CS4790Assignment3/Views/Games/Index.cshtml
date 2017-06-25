@@ -1,14 +1,28 @@
 @model PaginatedList<CS4790Assignment3.Models.Game>
-@{ 
+@{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewData["Title"] = "Index";
 }
 
-<div>
-	<div class="btn"><a asp-action="Create">Add Game</a></div>
-	<div class="btn" style="visibility: @ViewData["DefaultFilterVisibility"]">
-		<a asp-action="Index">Default Sort</a>
+<div class="row">
+	<div class="col-lg-4">
+		@{
+			var IsValidated = ViewData["IsValidated"];
+			if (IsValidated != null)
+			{
+				var Role = (string)ViewData["Role"];
+				if (Role == "Administrator")
+				{
+					<div class="btn"><a asp-action="Create">Add Game</a></div>
+				}
+			}
+		}
+
+		<div class="btn" style="visibility: @ViewData["DefaultFilterVisibility"]">
+			<a asp-action="Index">Default Sort</a>
+		</div>
 	</div>
+	<div class="col-lg-6"></div>
 </div>
 
 <table class="table table-hover">
@@ -18,7 +32,7 @@
 				Game ID
 			</th>
 			<th>
-				Already Owned
+				Status
 			</th>
 			<th>
 				<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["currentFilter"]">Game Name</a>
@@ -30,7 +44,7 @@
 				Price
 			</th>
 			<th>
-				Online Multiplayer Capable
+				Online Multiplayer Capabilities
 			</th>
 		</tr>
 	</thead>
@@ -42,7 +56,16 @@
 					@Html.DisplayFor(g => entry.GameID)
 				</td>
 				<td>
-					@Html.DisplayFor(g => entry.AlreadyOwned)
+					@{
+						if (entry.AlreadyOwned == true)
+						{
+							<p><b>Owned</b></p>
+						}
+						else
+						{
+							<p>Not owned</p>
+						}
+					}
 				</td>
 				<td>
 					<a asp-action="Details" asp-route-id="@entry.GameID" alt="Click to edit entry.">
@@ -56,10 +79,19 @@
 					@Html.DisplayFor(g => entry.Price)
 				</td>
 				<td>
-					@Html.DisplayFor(g => entry.IsOnlineMultiplayer)
+					@{
+						if (entry.IsOnlineMultiplayer == true)
+						{
+							<p>Online Multiplayer Available</p>
+						}
+						else
+						{
+							<p>Offline Singleplayer Only</p>
+						}
+					}
 				</td>
 			</tr>
-		}
+						}
 	</tbody>
 </table>
 
