@@ -14,5 +14,8 @@ namespace CS4790Assignment3.Models.ViewModels
 		public Game Game { get; set; }
 		public Publisher Publisher { get; set; }
 		public List<Review> Reviews { get; set; }
+		public CartItem CartItem { get; set; }
+		[Range(0, int.MaxValue, ErrorMessage = "Quantity must be one or more.")]
+		public int Quantity { get; set; }
 	}
 }

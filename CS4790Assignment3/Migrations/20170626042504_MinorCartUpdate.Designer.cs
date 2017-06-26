@@ -9,8 +9,8 @@ using CS4790Assignment3.Models;
 namespace CS4790Assignment3.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20170623051353_Init")]
-    partial class Init
+    [Migration("20170626042504_MinorCartUpdate")]
+    partial class MinorCartUpdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,9 +37,13 @@ namespace CS4790Assignment3.Migrations
 
                     b.Property<int>("PublisherID");
 
+                    b.Property<int?>("UserID");
+
                     b.HasKey("GameID");
 
                     b.HasIndex("PublisherID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Game");
                 });
@@ -75,8 +79,6 @@ namespace CS4790Assignment3.Migrations
 
                     b.Property<DateTime>("SubmissionDate");
 
-                    b.Property<string>("Title");
-
                     b.HasKey("ReviewID");
 
                     b.HasIndex("GameID");
@@ -106,12 +108,38 @@ namespace CS4790Assignment3.Migrations
                     b.ToTable("Screenshot");
                 });
 
+            modelBuilder.Entity("CS4790Assignment3.Models.User", b =>
+                {
+                    b.Property<int>("UserID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("EmailAddress");
+
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.Property<bool>("RememberMe");
+
+                    b.Property<string>("Role");
+
+                    b.Property<string>("Username")
+                        .IsRequired();
+
+                    b.HasKey("UserID");
+
+                    b.ToTable("User");
+                });
+
             modelBuilder.Entity("CS4790Assignment3.Models.Game", b =>
                 {
                     b.HasOne("CS4790Assignment3.Models.Publisher", "Publisher")
                         .WithMany("Games")
                         .HasForeignKey("PublisherID")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CS4790Assignment3.Models.User")
+                        .WithMany("ShoppingCart")
+                        .HasForeignKey("UserID");
                 });
 
             modelBuilder.Entity("CS4790Assignment3.Models.Review", b =>

@@ -4,6 +4,11 @@
 	ViewData["Title"] = "Login";
 }
 
+<div class="text-muted text-center">
+	<p>DEBUG: Pre-populated credentials, or create your own basic User account using the Register page.</p>
+	<p>U: Admin, P: Password123</p>
+	<p>U: User, P: 123Password</p>
+</div>
 @{
 	var IsValidated = ViewData["IsValidated"];
 	if (IsValidated == null)
@@ -39,6 +44,17 @@
 						</div>
 						<div class="text-danger">
 							@Html.ValidationMessageFor(u => u.Password)
+						</div>
+						<br />
+
+						<div class="editor-label">
+							@Html.LabelFor(u => u.RememberMe)
+						</div>
+						<div class="editor-field">
+							@Html.CheckBoxFor(u => u.RememberMe)
+						</div>
+						<div class="text-danger">
+							@Html.ValidationMessageFor(u => u.RememberMe)
 						</div>
 						<br />
 

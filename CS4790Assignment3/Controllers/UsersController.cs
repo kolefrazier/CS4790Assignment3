@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CS4790Assignment3.Data;
 using CS4790Assignment3.Models;
+using CS4790Assignment3.Models.ViewModels;
 using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Html;
@@ -26,18 +27,6 @@ namespace CS4790Assignment3.Views.Users
 		{
 			return RedirectToAction("Login");
 		}
-
-		//--- From Login page? ---
-		//1 - Get user from DB
-		//get userid, username, userpassword from usertable where input username = usertable.username
-		//2- Set Session data
-		//HttpContext.Session.SetString(SessionKeyName, UsernameFromDB);
-		//HttpContext.SessionSetInt32(SessionKeyUserID, UserIDFromDB);
-		//Set ViewData["IsSignedIn"] = true;
-
-		//--- After Login Call---
-		//If signed in, return signed in data. Otherwise, set user viewmodel to null for the View to format.
-
 
 		// GET: Login
 		[HttpGet]
@@ -75,12 +64,112 @@ namespace CS4790Assignment3.Views.Users
 			return View(user);
 		}
 
+		// GET: Users/Create
+		public IActionResult Create()
+		{
+			return View();
+		}
+
+		// POST: Users/Create
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Create([Bind("UserID,Username,Password,EmailAddress,Role")] User user)
+		{
+			user.Role = "User"; //Default to user. Admins will manually update the DB to add other Administrators. (Or Version 2.0 feature?)
+			if (ModelState.IsValid)
+			{
+				if(_context.Users.Any<User>(u => u.Username == user.Username) || _context.Users.Any<User>(u => u.EmailAddress == user.EmailAddress))
+				{
+					//If username or email are already in use.
+					return View(user);
+				} else
+				{
+					_context.Add(user);
+					await _context.SaveChangesAsync();
+					return RedirectToAction("Index");
+				}
+			}
+			return View(user);
+		}
+
+		// GET: Users/Create
+		public IActionResult ViewCart()
+		{
+			return View();
+		}
+
+		// POST: Users/Create
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult AddItemToCart(GameDetails Item)
+		{
+			CartItem NewEntry = new CartItem
+			{
+				GameID = Item.Game.GameID,
+				Quantity = Item.Quantity,
+				Name = Item.Game.Name,
+				Price = Item.Game.Price
+			};
+
+			SimpleShoppingCart.AddToCart(NewEntry);
+			return View("ViewCart", SimpleShoppingCart.ShoppingCart);
+			//return RedirectToAction("ViewCart");
+
+			//----WUBWUBWUB----
+
+			////Validation
+			//var ValidationUser = _context.Users.SingleOrDefault<User>(u => u.UserID == HttpContext.Session.GetInt32("userid"));
+			//if (Item.CartItem.Quantity < 1 || Item.Game.GameID < 0)
+			//{
+			//	return View();
+			//}
+
+			//CartItem NewItem = new CartItem
+			//{
+			//	Quantity = Item.CartItem.Quantity,
+			//	GameID = Item.Game.GameID,
+			//	UserID = ValidationUser.UserID
+			//};
+
+			//SimpleShoppingCart.AddToCart(NewItem);
+			//return RedirectToAction("Index", "Games");
+			////return SubmitCartItem(tmp);
+		}
+
+		///// <summary>
+		///// [DEPRECATED]
+		///// </summary>
+		///// <param name="Item"></param>
+		///// <returns></returns>
+		//public async Task<IActionResult> SubmitCartItem(CartItem Item)
+		//{
+		//	if (ModelState.IsValid)
+		//	{
+		//		if (Item.Quantity < 1)
+		//		{
+		//			return RedirectToAction("Details", "Games", Item.GameID);
+		//		}
+		//		else
+		//		{
+		//			_context.Add(Item);
+		//			await _context.SaveChangesAsync();
+		//			return RedirectToAction("ViewCart");
+		//		}
+		//	}
+		//	return RedirectToAction("Details", "Games", Item.GameID);
+		//}
+
 		public IActionResult Logout()
 		{
 			HttpContext.Session.Remove("validated");
 			HttpContext.Session.Remove("username");
 			HttpContext.Session.Remove("userid");
 			HttpContext.Session.Remove("role");
+			HttpContext.Session.Clear();
 			return RedirectToAction("Index", "Games");
 		}
 

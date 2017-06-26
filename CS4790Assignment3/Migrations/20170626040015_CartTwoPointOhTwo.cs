@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace CS4790Assignment3.Migrations
 {
-    public partial class Init : Migration
+    public partial class CartTwoPointOhTwo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,6 +25,23 @@ namespace CS4790Assignment3.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    UserID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    EmailAddress = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: false),
+                    RememberMe = table.Column<bool>(nullable: false),
+                    Role = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.UserID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Game",
                 columns: table => new
                 {
@@ -35,7 +52,8 @@ namespace CS4790Assignment3.Migrations
                     IsOnlineMultiplayer = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Price = table.Column<double>(nullable: false),
-                    PublisherID = table.Column<int>(nullable: false)
+                    PublisherID = table.Column<int>(nullable: false),
+                    UserID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -46,6 +64,12 @@ namespace CS4790Assignment3.Migrations
                         principalTable: "Publisher",
                         principalColumn: "PublisherID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Game_User_UserID",
+                        column: x => x.UserID,
+                        principalTable: "User",
+                        principalColumn: "UserID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -58,8 +82,7 @@ namespace CS4790Assignment3.Migrations
                     DoesRecommend = table.Column<bool>(nullable: false),
                     GameID = table.Column<int>(nullable: true),
                     ReviewContent = table.Column<string>(nullable: true),
-                    SubmissionDate = table.Column<DateTime>(nullable: false),
-                    Title = table.Column<string>(nullable: true)
+                    SubmissionDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,6 +124,11 @@ namespace CS4790Assignment3.Migrations
                 column: "PublisherID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Game_UserID",
+                table: "Game",
+                column: "UserID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Review_GameID",
                 table: "Review",
                 column: "GameID");
@@ -124,6 +152,9 @@ namespace CS4790Assignment3.Migrations
 
             migrationBuilder.DropTable(
                 name: "Publisher");
+
+            migrationBuilder.DropTable(
+                name: "User");
         }
     }
 }

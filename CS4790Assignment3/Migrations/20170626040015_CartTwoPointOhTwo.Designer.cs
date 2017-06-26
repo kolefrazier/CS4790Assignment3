@@ -9,32 +9,14 @@ using CS4790Assignment3.Models;
 namespace CS4790Assignment3.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20170625044125_UserSignOn")]
-    partial class UserSignOn
+    [Migration("20170626040015_CartTwoPointOhTwo")]
+    partial class CartTwoPointOhTwo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("CS4790Assignment3.Models.CartItem", b =>
-                {
-                    b.Property<int>("ItemID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CartID");
-
-                    b.Property<int>("GameID");
-
-                    b.Property<int>("Quantity");
-
-                    b.HasKey("ItemID");
-
-                    b.HasIndex("GameID");
-
-                    b.ToTable("CartItem");
-                });
 
             modelBuilder.Entity("CS4790Assignment3.Models.Game", b =>
                 {
@@ -55,9 +37,13 @@ namespace CS4790Assignment3.Migrations
 
                     b.Property<int>("PublisherID");
 
+                    b.Property<int?>("UserID");
+
                     b.HasKey("GameID");
 
                     b.HasIndex("PublisherID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("Game");
                 });
@@ -127,8 +113,12 @@ namespace CS4790Assignment3.Migrations
                     b.Property<int>("UserID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("EmailAddress");
+
                     b.Property<string>("Password")
                         .IsRequired();
+
+                    b.Property<bool>("RememberMe");
 
                     b.Property<string>("Role");
 
@@ -140,20 +130,16 @@ namespace CS4790Assignment3.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("CS4790Assignment3.Models.CartItem", b =>
-                {
-                    b.HasOne("CS4790Assignment3.Models.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("CS4790Assignment3.Models.Game", b =>
                 {
                     b.HasOne("CS4790Assignment3.Models.Publisher", "Publisher")
                         .WithMany("Games")
                         .HasForeignKey("PublisherID")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CS4790Assignment3.Models.User")
+                        .WithMany("ShoppingCart")
+                        .HasForeignKey("UserID");
                 });
 
             modelBuilder.Entity("CS4790Assignment3.Models.Review", b =>

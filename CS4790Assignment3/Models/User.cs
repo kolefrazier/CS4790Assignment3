@@ -19,9 +19,15 @@ namespace CS4790Assignment3.Models
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
 
-		public string Role { get; set; }
+		[DataType(DataType.EmailAddress)]
+		[Display(Name = "Email Address")]
+		public string EmailAddress { get; set; }
 
-		//Not quite navigation properties... But... Yeah...
-		//public List<Game> ShoppingCart { get; set; }
+		public string Role { get; set; }
+		[Display(Name = "Remember me?")]
+		public bool RememberMe { get; set; }
+
+		//Works better as a navigation prop and dedicated table.
+		public ICollection<Game> ShoppingCart { get; set; }
 	}
 }

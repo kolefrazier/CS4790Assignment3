@@ -32,9 +32,6 @@
 				Game ID
 			</th>
 			<th>
-				Status
-			</th>
-			<th>
 				<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["currentFilter"]">Game Name</a>
 			</th>
 			<th>
@@ -54,18 +51,6 @@
 			<tr>
 				<td>
 					@Html.DisplayFor(g => entry.GameID)
-				</td>
-				<td>
-					@{
-						if (entry.AlreadyOwned == true)
-						{
-							<p><b>Owned</b></p>
-						}
-						else
-						{
-							<p>Not owned</p>
-						}
-					}
 				</td>
 				<td>
 					<a asp-action="Details" asp-route-id="@entry.GameID" alt="Click to edit entry.">

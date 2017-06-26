@@ -15,7 +15,7 @@
 	var IsValidated = ViewData["IsValidated"];
 	if (IsValidated != null)
 	{
-		var Role = (string) ViewData["Role"];
+		var Role = (string)ViewData["Role"];
 		if (Role == "Administrator")
 		{
 			<div class="row col-lg-12 col-md-12 text-center">
@@ -41,16 +41,7 @@
 				@Html.DisplayNameFor(model => model.Game.Price)
 			</dt>
 			<dd>
-				@{
-					if (Model.Game.AlreadyOwned == true)
-					{
-						<div><p style="text-decoration: line-through;">@Html.DisplayFor(model => model.Game.Price)</p> In your collection.</div>
-					}
-					else
-					{
-						@Html.DisplayFor(model => model.Game.Price)
-					}
-				}
+				@Html.DisplayFor(model => model.Game.Price)
 			</dd>
 
 			<dt>
@@ -99,6 +90,44 @@
 	</div>
 </div>
 
+@{
+	if (IsValidated != null)
+	{
+		<div class="row">
+			<h2 class="text-center">Add to Cart</h2>
+			<br />
+		</div>
+		<div class="row">
+			<form asp-action="AddItemToCart" asp-controller="Users">
+				<div class="form-horizontal">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<input type="hidden" asp-for="Game.GameID" value="@Model.Game.GameID" />
+					<input type="hidden" asp-for="Game.Name" value="@Model.Game.Name" />
+					<input type="hidden" asp-for="Game.Price" value="@Model.Game.Price" />
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label asp-for="Quantity" class="col-md-4 control-label"></label>
+								<div class="col-md-8">
+									<input asp-for="Quantity" type="text" value="1" step="1" class="form-control" />
+									<span asp-validation-for="Quantity" class="text-danger"></span>
+								</div>
+							</div>
+							<div class="col-md-3"></div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-12 text-center">
+								<input type="submit" value="Add to cart" class="btn" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	}
+}
+
 <div class="row col-lg-12 col-md-12">
 	<h2 class="text-center">Reviews</h2>
 	<p class="text-center"><i>Note: Review Content may be the same (due to laziness in seed data), but dates should be different, even if only slightly.</i></p>
@@ -122,7 +151,7 @@
 			</th>
 		</tr>
 		@foreach (var review in Model.Reviews)
-		{
+			{
 			<tr>
 				<td>
 					@Html.DisplayFor(r => review.Author)

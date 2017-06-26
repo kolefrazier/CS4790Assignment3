@@ -26,14 +26,31 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-9"></div>
 			<div class="col-md-3">
 				@{
 					var IsValidated = ViewData["IsValidated"];
-					if (IsValidated == null)
+					if (IsValidated != null)
 					{
-						<a asp-action="Login" asp-controller="Users">Login</a>
+						<a asp-action="ViewCart" asp-controller="Users">View your shopping cart</a>
 					} else
+					{
+						<h6>Login or Register to add items to your cart!</h6>
+
+					}
+				}
+			</div>
+			<div class="col-md-6"></div>
+			<div class="col-md-3">
+				@{
+					var IsUserValidated = ViewData["IsValidated"];
+					if (IsUserValidated == null)
+					{
+						<div>
+							<a asp-action="Login" asp-controller="Users">Login</a> |
+							<a asp-action="Create" asp-controller="Users">Register</a>
+						</div>
+					}
+					else
 					{
 						<div>
 							<b>Welcome, @ViewData["Username"]!</b> <a asp-action="Logout" asp-controller="Users">Click here to logout.</a>

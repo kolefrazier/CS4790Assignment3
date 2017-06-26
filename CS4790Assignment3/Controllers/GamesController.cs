@@ -151,7 +151,7 @@ namespace CS4790Assignment3.Controllers
 			{
 				_context.Add(game);
 				await _context.SaveChangesAsync();
-				return RedirectToAction("Index");
+				return RedirectToAction("Index", game.GameID);
 			}
 			return View(game);
 		}
@@ -209,9 +209,8 @@ namespace CS4790Assignment3.Controllers
 				}
 				return RedirectToAction("Details", game.GameID);
 			}
-			ViewData["PublisherIDs"] = new SelectList(_context.Publishers, "PublisherID", "PublisherID");
-			return View(game);
-			
+			return RedirectToAction("Details", game.GameID);
+
 		}
 
 		// GET: Games/Delete/5
