@@ -4,6 +4,22 @@
 	ViewData["title"] = "View Your Cart";
 }
 
+@{
+	var IsValidated = ViewData["IsValidated"];
+	if (IsValidated == null)
+	{
+		var Role = (string)ViewData["Role"];
+		if (Role == "Administrator")
+		{
+			<div class="row col-lg-12 col-md-12 text-center">
+				<h5 class="text-success"><a asp-action="Login" asp-controller="Users">Login</a> or <a asp-action="Create" asp-controller="Users">Login</a> to save your cart or checkout!</h5>
+			</div>
+		}
+	}
+}
+
+<h1 class="text-danger">UPDATE THIS PAGE TO USE THE SHOPPINGCART VIEWMODEL!!!!!!!</h1>
+
 <table class="table table-hover">
 	<thead>
 		<tr>

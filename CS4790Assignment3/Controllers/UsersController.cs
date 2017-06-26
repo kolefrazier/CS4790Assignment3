@@ -97,7 +97,8 @@ namespace CS4790Assignment3.Views.Users
 		// GET: Users/Create
 		public IActionResult ViewCart()
 		{
-			return View();
+			SetUserData();
+			return View(SimpleShoppingCart.ShoppingCart);
 		}
 
 		// POST: Users/Create
@@ -117,51 +118,18 @@ namespace CS4790Assignment3.Views.Users
 
 			SimpleShoppingCart.AddToCart(NewEntry);
 			return View("ViewCart", SimpleShoppingCart.ShoppingCart);
-			//return RedirectToAction("ViewCart");
-
-			//----WUBWUBWUB----
-
-			////Validation
-			//var ValidationUser = _context.Users.SingleOrDefault<User>(u => u.UserID == HttpContext.Session.GetInt32("userid"));
-			//if (Item.CartItem.Quantity < 1 || Item.Game.GameID < 0)
-			//{
-			//	return View();
-			//}
-
-			//CartItem NewItem = new CartItem
-			//{
-			//	Quantity = Item.CartItem.Quantity,
-			//	GameID = Item.Game.GameID,
-			//	UserID = ValidationUser.UserID
-			//};
-
-			//SimpleShoppingCart.AddToCart(NewItem);
-			//return RedirectToAction("Index", "Games");
-			////return SubmitCartItem(tmp);
 		}
 
-		///// <summary>
-		///// [DEPRECATED]
-		///// </summary>
-		///// <param name="Item"></param>
-		///// <returns></returns>
-		//public async Task<IActionResult> SubmitCartItem(CartItem Item)
-		//{
-		//	if (ModelState.IsValid)
-		//	{
-		//		if (Item.Quantity < 1)
-		//		{
-		//			return RedirectToAction("Details", "Games", Item.GameID);
-		//		}
-		//		else
-		//		{
-		//			_context.Add(Item);
-		//			await _context.SaveChangesAsync();
-		//			return RedirectToAction("ViewCart");
-		//		}
-		//	}
-		//	return RedirectToAction("Details", "Games", Item.GameID);
-		//}
+		private void SetUserData()
+		{
+			if (HttpContext.Session.GetString("validated") == "true")
+			{
+				ViewData["IsValidated"] = HttpContext.Session.GetString("validated");
+				ViewData["Username"] = HttpContext.Session.GetString("username");
+				ViewData["UserID"] = HttpContext.Session.GetInt32("userid");
+				ViewData["Role"] = HttpContext.Session.GetString("role");
+			}
+		}
 
 		public IActionResult Logout()
 		{

@@ -27,17 +27,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-3">
-				@{
-					var IsValidated = ViewData["IsValidated"];
-					if (IsValidated != null)
-					{
-						<a asp-action="ViewCart" asp-controller="Users">View your shopping cart</a>
-					} else
-					{
-						<h6>Login or Register to add items to your cart!</h6>
-
-					}
-				}
+				<a asp-action="ViewCart" asp-controller="Users">View your shopping cart</a>
 			</div>
 			<div class="col-md-6"></div>
 			<div class="col-md-3">
@@ -71,6 +61,7 @@
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<hr />
+				<a asp-action="About" asp-controller="Games">About Assignment 4</a>
 				<p>Kole Frazier - CS4790 Assignment 4</p>
 			</div>
 		</div>

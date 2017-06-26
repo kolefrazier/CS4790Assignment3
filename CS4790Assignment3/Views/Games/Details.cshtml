@@ -91,7 +91,7 @@
 </div>
 
 @{
-	if (IsValidated != null)
+	if (true) //Was if(IsValidated != null), but the cart's gotta be available to unreg'd users.
 	{
 		<div class="row">
 			<h2 class="text-center">Add to Cart</h2>
