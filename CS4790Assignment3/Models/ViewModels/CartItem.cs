@@ -19,6 +19,7 @@ namespace CS4790Assignment3.Models.ViewModels
 		[Display(Name = "Game Name")]
 		public string Name { get; set; }
 		[Display(Name = "Price Per Copy")]
+		[DataType(DataType.Currency)]
 		public double Price { get; set; }
 	}
 }

@@ -27,10 +27,38 @@ namespace CS4790Assignment3
 			get { return _TotalQuantity; }
 		}
 
+		public static void EmptyCart()
+		{
+			ShoppingCart = new List<CartItem>();
+		}
+
 		public static void AddToCart(CartItem Item)
 		{
 			_TotalQuantity += Item.Quantity;
-			ShoppingCart.Add(Item);
+
+			if (ShoppingCart.Any(i => i.GameID == Item.GameID))
+			{
+				var ExistingItem = ShoppingCart.First(i => i.GameID == Item.GameID);
+				ExistingItem.Quantity += Item.Quantity;
+
+				//--- Maybe move this logic down to UpdateCart?? ---
+				//if (Item.Quantity == ExistingItem.Quantity)
+				//{
+				//	ExistingItem.Quantity += Item.Quantity;
+				//} else if(Item.Quantity > ExistingItem.Quantity)
+				//{
+				//	ExistingItem.Quantity += (Item.Quantity - ExistingItem.Quantity);
+				//} else if (Item.Quantity < ExistingItem.Quantity)
+				//{
+				//	ExistingItem.Quantity += (ExistingItem.Quantity - Item.Quantity);
+				//} else
+				//{
+				//	ExistingItem.Quantity = Item.Quantity;
+				//}
+			} else
+			{
+				ShoppingCart.Add(Item);
+			}
 		}
 
 		public static void UpdateCart(CartItem Item)
@@ -52,8 +80,9 @@ namespace CS4790Assignment3
 			}
 		}
 
-		public static void RemoveItem(CartItem Item)
+		public static void RemoveItem(int id)
 		{
+			var Item = ShoppingCart.First(i => i.GameID == id);
 			_TotalQuantity -= Item.Quantity;
 			ShoppingCart.Remove(Item);
 		}

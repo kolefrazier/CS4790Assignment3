@@ -49,7 +49,7 @@ namespace CS4790Assignment3.Views.Users
 
 					//User is valid, set session data.
 					//Far form proper for user authentication. 
-					//	But it "works" for this assignment with what we've been shwon in class.
+					//	But it "works" for this assignment with what we've been shown in class.
 					HttpContext.Session.SetString("validated", "true");
 					HttpContext.Session.SetString("username", ValidationUser.Username);
 					HttpContext.Session.SetInt32("userid", ValidationUser.UserID);
@@ -98,7 +98,23 @@ namespace CS4790Assignment3.Views.Users
 		public IActionResult ViewCart()
 		{
 			SetUserData();
+			double tmpTotalCost = SimpleShoppingCart.ShoppingCart.Sum(i => (i.Quantity * i.Price));
+			int tmpTotalItems = SimpleShoppingCart.ShoppingCart.Sum(i => i.Quantity);
+			var temporaryCart = new ShoppingCart
+			{
+				Cart = SimpleShoppingCart.ShoppingCart,
+				TotalCost = tmpTotalCost,
+				TotalItems = tmpTotalItems
+			};
 			return View(SimpleShoppingCart.ShoppingCart);
+		}
+
+		// GET: Users/EmptyCart
+		public IActionResult EmptyCart()
+		{
+			SetUserData();
+			SimpleShoppingCart.EmptyCart();
+			return RedirectToAction("ViewCart", "Users", SimpleShoppingCart.ShoppingCart);
 		}
 
 		// POST: Users/Create
@@ -108,6 +124,7 @@ namespace CS4790Assignment3.Views.Users
 		[ValidateAntiForgeryToken]
 		public IActionResult AddItemToCart(GameDetails Item)
 		{
+			SetUserData();
 			CartItem NewEntry = new CartItem
 			{
 				GameID = Item.Game.GameID,
@@ -118,6 +135,30 @@ namespace CS4790Assignment3.Views.Users
 
 			SimpleShoppingCart.AddToCart(NewEntry);
 			return View("ViewCart", SimpleShoppingCart.ShoppingCart);
+		}
+
+		// POST: Users/RemoveItemFromCart
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		public IActionResult RemoveItemFromCart(int id)
+		{
+			SetUserData();
+			SimpleShoppingCart.RemoveItem(id);
+			return RedirectToAction("ViewCart", "Users", SimpleShoppingCart.ShoppingCart);
+		}
+
+		public IActionResult Checkout()
+		{
+			SetUserData();
+			double tmpTotalCost = SimpleShoppingCart.ShoppingCart.Sum(i => (i.Quantity * i.Price));
+			int tmpTotalItems = SimpleShoppingCart.ShoppingCart.Sum(i => i.Quantity);
+			var temporaryCart = new ShoppingCart
+			{
+				Cart = SimpleShoppingCart.ShoppingCart,
+				TotalCost = tmpTotalCost,
+				TotalItems = tmpTotalItems
+			};
+			return View(temporaryCart);
 		}
 
 		private void SetUserData()
