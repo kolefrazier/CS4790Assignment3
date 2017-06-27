@@ -11,6 +11,9 @@ using CS4790Assignment3.Models.ViewModels;
 using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Html;
+using System.Net;
+using System.IO;
+using System.Net.Http;
 
 namespace CS4790Assignment3.Views.Users
 {
@@ -20,7 +23,7 @@ namespace CS4790Assignment3.Views.Users
 
 		public UsersController(GameContext context)
 		{
-			_context = context;    
+			_context = context;
 		}
 
 		public IActionResult Index()
@@ -55,7 +58,8 @@ namespace CS4790Assignment3.Views.Users
 					HttpContext.Session.SetInt32("userid", ValidationUser.UserID);
 					HttpContext.Session.SetString("role", ValidationUser.Role);
 					return RedirectToAction("Index", "Games");
-				} else
+				}
+				else
 				{
 					ModelState.AddModelError("", "Username or password is incorrect.");
 				}
@@ -80,11 +84,12 @@ namespace CS4790Assignment3.Views.Users
 			user.Role = "User"; //Default to user. Admins will manually update the DB to add other Administrators. (Or Version 2.0 feature?)
 			if (ModelState.IsValid)
 			{
-				if(_context.Users.Any<User>(u => u.Username == user.Username) || _context.Users.Any<User>(u => u.EmailAddress == user.EmailAddress))
+				if (_context.Users.Any<User>(u => u.Username == user.Username) || _context.Users.Any<User>(u => u.EmailAddress == user.EmailAddress))
 				{
 					//If username or email are already in use.
 					return View(user);
-				} else
+				}
+				else
 				{
 					_context.Add(user);
 					await _context.SaveChangesAsync();
@@ -103,7 +108,7 @@ namespace CS4790Assignment3.Views.Users
 			var temporaryCart = new ShoppingCart
 			{
 				Cart = SimpleShoppingCart.ShoppingCart,
-				TotalCost = tmpTotalCost,
+				SubTotal = tmpTotalCost,
 				TotalItems = tmpTotalItems
 			};
 			return View(SimpleShoppingCart.ShoppingCart);
@@ -147,18 +152,44 @@ namespace CS4790Assignment3.Views.Users
 			return RedirectToAction("ViewCart", "Users", SimpleShoppingCart.ShoppingCart);
 		}
 
-		public IActionResult Checkout()
+		public async Task<IActionResult> Checkout()
 		{
 			SetUserData();
 			double tmpTotalCost = SimpleShoppingCart.ShoppingCart.Sum(i => (i.Quantity * i.Price));
 			int tmpTotalItems = SimpleShoppingCart.ShoppingCart.Sum(i => i.Quantity);
+			var user = _context.Users.FirstOrDefault<User>(u => u.UserID == HttpContext.Session.GetInt32("userid"));
+			var taxrate = await GetTaxRate(user.Zipcode);
+
+			double TaxRateParsed;
+			double.TryParse(taxrate, out TaxRateParsed);
+
 			var temporaryCart = new ShoppingCart
 			{
 				Cart = SimpleShoppingCart.ShoppingCart,
-				TotalCost = tmpTotalCost,
+				TaxRate = TaxRateParsed,
+				TaxTotal = (tmpTotalCost * TaxRateParsed),
+				SubTotal = tmpTotalCost,
+				GrandTotal = tmpTotalCost + (tmpTotalCost * TaxRateParsed),
 				TotalItems = tmpTotalItems
 			};
 			return View(temporaryCart);
+		}
+
+		private async Task<string> GetTaxRate(int zip)
+		{
+			//http://assignment4-api.azurewebsites.net/api/tax/2
+			//https://docs.microsoft.com/en-us/dotnet/framework/network-programming/how-to-send-data-using-the-webrequest-class
+
+			string urlAddress = "http://assignment4-api.azurewebsites.net/api/tax/" + zip;
+
+			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlAddress);
+			WebResponse response = await request.GetResponseAsync();
+
+			Stream receiveStream = response.GetResponseStream();
+			StreamReader readStream = new StreamReader(receiveStream);
+			var data = readStream.ReadToEnd();
+
+			return data;
 		}
 
 		private void SetUserData()

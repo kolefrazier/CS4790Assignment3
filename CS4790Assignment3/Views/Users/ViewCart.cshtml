@@ -65,10 +65,10 @@
 						@Html.DisplayFor(i => entry.Quantity)
 					</td>
 					<td>
-						@Html.DisplayFor(g => entry.Price)
+						@Html.DisplayFor(i => entry.Price)
 					</td>
 					<td>
-						@(entry.Price * entry.Quantity)
+						@Html.DisplayFor(i => entry.TotalPrice)
 					</td>
 					<td>
 						<a asp-action="RemoveItemFromCart" asp-controller="Users" asp-route-id="@(entry.GameID)" class="btn btn-danger btn-sm">Remove</a>

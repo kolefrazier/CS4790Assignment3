@@ -108,8 +108,28 @@ namespace CS4790Assignment3.Data
 
 			var users = new User[]
 			{
-				new User{ Username = "Admin", Password = "Password123", EmailAddress = "admin@website.com", Role = "Administrator" },
-				new User{ Username = "Normal", Password = "123Password", EmailAddress = "john@doe.com", Role = "User"}
+				new User{
+					Username = "Admin",
+					Password = "Password123",
+					EmailAddress = "admin@website.com",
+					PhoneNumber = "831-214-1234",
+					Role = "Administrator",
+					Address = "123 Wall Street",
+					City = "New York City",
+					State = "New York",
+					Zipcode = 1
+				},
+				new User{
+					Username = "Normal",
+					Password = "123Password",
+					EmailAddress = "john@doe.com",
+					PhoneNumber = "321-654-9876",
+					Role = "User",
+					Address = "456 Washington Boulevard",
+					City = "Ogden",
+					State = "Utah",
+					Zipcode = 3
+				}
 			};
 
 			foreach (User u in users)

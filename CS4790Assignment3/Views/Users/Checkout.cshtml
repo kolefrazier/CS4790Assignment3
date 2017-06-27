@@ -60,17 +60,17 @@
 	<div class="col-md-4">
 		<dl class="dl-horizontal">
 			<dt>Total Quantity</dt>
-			<dd>@(Model.TotalItems)</dd>
+			<dd>@Html.DisplayFor(i => i.TotalItems)</dd>
 		</dl>
 		<dl class="dl-horizontal">
 			<dt>Sub Total</dt>
-			<dd>@(Model.TotalCost)</dd>
+			<dd>@Html.DisplayFor(i => i.SubTotal)</dd>
 			<dt>Tax</dt>
-			<dd></dd>
+			<dd>@Html.DisplayFor(i => i.TaxTotal) <h6><i>rate @Html.DisplayFor(i =>i.TaxRate)</i></h6></dd>
 		</dl>
 		<dl class="dl-horizontal">
-			<dt>Total</dt>
-			<dd>1234567</dd>
+			<dt>Grand Total</dt>
+			<dd>@Html.DisplayFor(i => i.GrandTotal)</dd>
 		</dl>
 	</div>
 </div>

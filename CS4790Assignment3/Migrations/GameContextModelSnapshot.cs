@@ -112,17 +112,27 @@ namespace CS4790Assignment3.Migrations
                     b.Property<int>("UserID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Address");
+
+                    b.Property<string>("City");
+
                     b.Property<string>("EmailAddress");
 
                     b.Property<string>("Password")
                         .IsRequired();
 
+                    b.Property<string>("PhoneNumber");
+
                     b.Property<bool>("RememberMe");
 
                     b.Property<string>("Role");
 
+                    b.Property<string>("State");
+
                     b.Property<string>("Username")
                         .IsRequired();
+
+                    b.Property<int>("Zipcode");
 
                     b.HasKey("UserID");
 

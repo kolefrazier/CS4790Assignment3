@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace CS4790Assignment3.Migrations
 {
-    public partial class CartTwoPointOhTwo : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,11 +30,16 @@ namespace CS4790Assignment3.Migrations
                 {
                     UserID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Address = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
                     EmailAddress = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: false),
+                    PhoneNumber = table.Column<string>(nullable: true),
                     RememberMe = table.Column<bool>(nullable: false),
                     Role = table.Column<string>(nullable: true),
-                    Username = table.Column<string>(nullable: false)
+                    State = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: false),
+                    Zipcode = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

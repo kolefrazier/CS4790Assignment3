@@ -9,8 +9,8 @@ using CS4790Assignment3.Models;
 namespace CS4790Assignment3.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20170626042504_MinorCartUpdate")]
-    partial class MinorCartUpdate
+    [Migration("20170627195931_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -113,17 +113,27 @@ namespace CS4790Assignment3.Migrations
                     b.Property<int>("UserID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Address");
+
+                    b.Property<string>("City");
+
                     b.Property<string>("EmailAddress");
 
                     b.Property<string>("Password")
                         .IsRequired();
 
+                    b.Property<string>("PhoneNumber");
+
                     b.Property<bool>("RememberMe");
 
                     b.Property<string>("Role");
 
+                    b.Property<string>("State");
+
                     b.Property<string>("Username")
                         .IsRequired();
+
+                    b.Property<int>("Zipcode");
 
                     b.HasKey("UserID");
 
