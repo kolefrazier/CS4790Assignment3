@@ -33,6 +33,7 @@
 	<table class="col-md-12 table table-hover">
 		<thead>
 			<tr>
+				<th></th> <!--Creates header space for the thumbnail, but no header content.-->
 				<th>
 					Game ID
 				</th>
@@ -55,6 +56,9 @@
 			@foreach (var entry in Model)
 			{
 				<tr>
+					<td class="img-thumbnail">
+						<img src="#" style="width: 32px; height: 32px; background-color: darkgrey;"/>
+					</td>
 					<td>
 						@Html.DisplayFor(i => entry.GameID)
 					</td>

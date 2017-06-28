@@ -15,6 +15,14 @@ namespace CS4790Assignment3.Models
 		[Required(ErrorMessage = "Invalid name entered for game.")]
 		[Display(Name = "Game Name")]
 		public string Name { get; set; }
+
+		[Display(Name = "Description")]
+		[Required(ErrorMessage = "Invalid description entered.")]
+		public string Description { get; set; }
+
+		[Required(ErrorMessage = "Invalid image path entered.")]
+		public string ImagePath { get; set; }
+
 		[Required]
 		public string Genre { get; set; }
 
@@ -22,12 +30,10 @@ namespace CS4790Assignment3.Models
 		[Range(0, double.MaxValue, ErrorMessage = "Please a valid price.")]
 		[Required]
 		public double Price { get; set; }
+
 		[Display(Name = "Online Multiplayer Capable")]
 		[Required(ErrorMessage = "Online gameplay status must be set.")]
 		public bool IsOnlineMultiplayer { get; set; }
-		[Display(Name = "Is Completed")]
-		[Required]
-		public bool AlreadyOwned { get; set; }
 
 		//Navigation Props
 		public int PublisherID { get; set; }

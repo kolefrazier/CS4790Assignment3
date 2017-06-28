@@ -9,8 +9,8 @@ using CS4790Assignment3.Models;
 namespace CS4790Assignment3.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20170627195931_Init")]
-    partial class Init
+    [Migration("20170628171357_Init-GameDetails")]
+    partial class InitGameDetails
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,13 @@ namespace CS4790Assignment3.Migrations
                     b.Property<int>("GameID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("AlreadyOwned");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<string>("Genre")
+                        .IsRequired();
+
+                    b.Property<string>("ImagePath")
                         .IsRequired();
 
                     b.Property<bool>("IsOnlineMultiplayer");

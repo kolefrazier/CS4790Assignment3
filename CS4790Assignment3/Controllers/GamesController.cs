@@ -144,7 +144,7 @@ namespace CS4790Assignment3.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("GameID,Name,Genre,Price,AlreadyOwned,IsOnlineMultiplayer")] Game game)
+		public async Task<IActionResult> Create([Bind("GameID,Name,Description,ImagePath,Genre,Price,IsOnlineMultiplayer,PublisherID")] Game game)
 		{
 			SetUserData();
 			if (ModelState.IsValid)
@@ -180,7 +180,7 @@ namespace CS4790Assignment3.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("GameID,Name,Genre,Price,AlreadyOwned,IsOnlineMultiplayer,PublisherID")] Game game)
+		public async Task<IActionResult> Edit(int id, [Bind("GameID,Name,Description,ImagePath,Genre,Price,IsOnlineMultiplayer,PublisherID")] Game game)
 		{
 			if (id != game.GameID)
 			{

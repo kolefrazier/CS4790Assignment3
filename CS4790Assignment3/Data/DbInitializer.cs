@@ -37,21 +37,21 @@ namespace CS4790Assignment3.Data
 			//Games
 			var games = new Game[] 
 			{
-				new Game { Name = "The Binding of Isaac: Rebirth", Genre = "Roguelike", Price = 15.0, IsOnlineMultiplayer = false, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 1) },
-				new Game { Name = "Team Fortress 2", Genre = "First Person Shooter", Price = 0, IsOnlineMultiplayer = true, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 1) },
-				new Game { Name = "Arma III", Genre = "First Person Shooter", Price = 30.0, IsOnlineMultiplayer = true, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 1) },
-				new Game { Name = "Ori and the Blind Forest", Genre = "Platformer", Price = 20.0, IsOnlineMultiplayer = false, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 2) },
-				new Game { Name = "The Escapists", Genre = "Roguelike", Price = 10.0, IsOnlineMultiplayer = false, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 2) },
-				new Game { Name = "Garry's Mod", Genre = "First Person Shooter", Price = 5.0, IsOnlineMultiplayer = true, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 2) },
-				new Game { Name = "FTL", Genre = "Roguelike", Price = 12.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 3) },
-				new Game { Name = "Half-Life 2", Genre = "First Person Shooter", Price = 30.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 3) },
-				new Game { Name = "GTAV", Genre = "Action", Price = 30.0, IsOnlineMultiplayer = true, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 3) },
-				new Game { Name = "Hyper Light Drifer", Genre = "Action", Price = 30.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 4) },
-				new Game { Name = "Amnesia: The Dark Descent", Genre = "Horror", Price = 20.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 4) },
-				new Game { Name = "Dark Souls: Prepare to Die", Genre = "Adventure", Price = 20.0, IsOnlineMultiplayer = true, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 4) },
-				new Game { Name = "Race the Sun", Genre = "Action", Price = 5.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 5) },
-				new Game { Name = "Tales of Zestiria", Genre = "RPG", Price = 60.0, IsOnlineMultiplayer = false, AlreadyOwned = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 5) },
-				new Game { Name = "Witcher 3", Genre = "RPG", Price = 60.0, IsOnlineMultiplayer = false, AlreadyOwned = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 5) }
+				new Game { Name = "The Binding of Isaac: Rebirth", ImagePath = "isaac.png", Description = "A boy fights himself in his basement.", Genre = "Roguelike", Price = 15.0, IsOnlineMultiplayer = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 1) },
+				new Game { Name = "Team Fortress 2", ImagePath = "tf2.png", Description = "Nine insane men fight over gravel.", Genre = "First Person Shooter", Price = 0, IsOnlineMultiplayer = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 1) },
+				new Game { Name = "Arma III", ImagePath = "arma3.png", Description = "In depth, military-like shooter.", Genre = "First Person Shooter", Price = 30.0, IsOnlineMultiplayer = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 1) },
+				new Game { Name = "Ori and the Blind Forest", ImagePath = "ori.png", Description = "Beautiful and emotional platformer.", Genre = "Platformer", Price = 20.0, IsOnlineMultiplayer = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 2) },
+				new Game { Name = "The Escapists", ImagePath = "escapists.png", Description = "Your goal is to escape from the prison in any way possible.", Genre = "Roguelike", Price = 10.0, IsOnlineMultiplayer = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 2) },
+				new Game { Name = "Garry's Mod", ImagePath = "gmod.png", Description = "A mod that lets you play other mods.", Genre = "First Person Shooter", Price = 5.0, IsOnlineMultiplayer = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 2) },
+				new Game { Name = "FTL",  ImagePath = "ftl.png", Description = "Navigate your ship to the federation's command forces.", Genre = "Roguelike", Price = 12.0, IsOnlineMultiplayer = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 3) },
+				new Game { Name = "Half-Life 2", ImagePath = "hl2.png", Description = "A game with no resolution sequal, join the resistance against alien dictators.", Genre = "First Person Shooter", Price = 30.0, IsOnlineMultiplayer = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 3) },
+				new Game { Name = "GTAV", ImagePath = "gtav.png", Description = "Join the world of organized (and disorganized) crime.", Genre = "Action", Price = 30.0, IsOnlineMultiplayer = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 3) },
+				new Game { Name = "Hyper Light Drifer", ImagePath = "hyperlightdrifer.png", Description = "Beautiful 2D hack-and-slash.", Genre = "Action", Price = 30.0, IsOnlineMultiplayer = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 4) },
+				new Game { Name = "Amnesia: The Dark Descent", ImagePath = "amnesia.png", Description = "Brennenburg Castle holds some secrets. Prepare to wet your pants.", Genre = "Horror", Price = 20.0, IsOnlineMultiplayer = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 4) },
+				new Game { Name = "Dark Souls: Prepare to Die", ImagePath = "darksouls.png", Description = "You are the chosen undead. Trek through Lordran to rekindle the flame.", Genre = "Adventure", Price = 20.0, IsOnlineMultiplayer = true, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 4) },
+				new Game { Name = "Race the Sun", ImagePath = "rts.png", Description = "The sunlight is your source of power. Fly as far as you can before the sun sets.", Genre = "Action", Price = 5.0, IsOnlineMultiplayer = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 5) },
+				new Game { Name = "Tales of Zestiria", ImagePath = "zestiria.png", Description = "The latest installment in the Tales of series.", Genre = "RPG", Price = 60.0, IsOnlineMultiplayer = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 5) },
+				new Game { Name = "Witcher 3", ImagePath = "witcher3.png", Description = "Geralt - a Witcher - returns for another adventure.", Genre = "RPG", Price = 60.0, IsOnlineMultiplayer = false, Publisher = publishers.FirstOrDefault(p => p.PublisherID == 5) }
 			};
 
 			foreach (Game g in games)

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace CS4790Assignment3.Migrations
 {
-    public partial class Init : Migration
+    public partial class InitGameDetails : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,8 +52,9 @@ namespace CS4790Assignment3.Migrations
                 {
                     GameID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AlreadyOwned = table.Column<bool>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
                     Genre = table.Column<string>(nullable: false),
+                    ImagePath = table.Column<string>(nullable: false),
                     IsOnlineMultiplayer = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Price = table.Column<double>(nullable: false),

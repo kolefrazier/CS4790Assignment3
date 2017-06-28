@@ -22,9 +22,13 @@ namespace CS4790Assignment3.Migrations
                     b.Property<int>("GameID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<bool>("AlreadyOwned");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<string>("Genre")
+                        .IsRequired();
+
+                    b.Property<string>("ImagePath")
                         .IsRequired();
 
                     b.Property<bool>("IsOnlineMultiplayer");
