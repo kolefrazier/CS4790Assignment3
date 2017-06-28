@@ -27,10 +27,24 @@ namespace CS4790Assignment3.Models
 		[Display(Name = "Remember me?")]
 		public bool RememberMe { get; set; }
 
+		[Required]
+		[Display(Name = "Street Address")]
 		public string Address { get; set; }
+
+		[Required]
 		public string City { get; set; }
+
+		[Required]
 		public string State { get; set; }
+
+		[Required]
+		[Display(Name = "Zip code")]
+		[Range(0, 5, ErrorMessage = "Only zip codes for provinces 0-5 supported.")]
 		public int Zipcode { get; set; }
+
+		[Required]
+		[DataType(DataType.PhoneNumber)]
+		[Display(Name = "Phone Number")]
 		public string PhoneNumber { get; set; }
 
 		//Works better as a navigation prop and dedicated table.

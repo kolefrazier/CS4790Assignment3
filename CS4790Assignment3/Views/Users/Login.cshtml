@@ -25,40 +25,28 @@
 						</div>
 						<br />
 
-						<div class="editor-label">
-							@Html.LabelFor(u => u.Username)
+						<div class="form-horizontal">
+							@Html.LabelFor(u => u.Username)<span>&nbsp;</span>@Html.TextBoxFor(u => u.Username)
+							<div class="text-danger">
+								@Html.ValidationMessageFor(u => u.Username)
+							</div>
 						</div>
-						<div class="editor-field">
-							@Html.TextBoxFor(u => u.Username)
-						</div>
-						<div class="text-danger">
-							@Html.ValidationMessageFor(u => u.Username)
-						</div>
-						<br />
 
-						<div class="editor-label">
-							@Html.LabelFor(u => u.Password)
+						<div class="form-horizontal">
+							@Html.LabelFor(u => u.Password)<span>&nbsp;&nbsp;</span>@Html.PasswordFor(u => u.Password)
+							<div class="text-danger">
+								@Html.ValidationMessageFor(u => u.Password)
+							</div>
 						</div>
-						<div class="editor-field">
-							@Html.PasswordFor(u => u.Password)
-						</div>
-						<div class="text-danger">
-							@Html.ValidationMessageFor(u => u.Password)
-						</div>
-						<br />
 
-						<div class="editor-label">
-							@Html.LabelFor(u => u.RememberMe)
+						<div class="form-horizontal">
+							@Html.LabelFor(u => u.RememberMe) @Html.CheckBoxFor(u => u.RememberMe)
+							<div class="text-danger">
+								@Html.ValidationMessageFor(u => u.RememberMe)
+							</div>
 						</div>
-						<div class="editor-field">
-							@Html.CheckBoxFor(u => u.RememberMe)
-						</div>
-						<div class="text-danger">
-							@Html.ValidationMessageFor(u => u.RememberMe)
-						</div>
-						<br />
 
-						<input type="submit" value="Log In" />
+						<input type="submit" value="Log In" class="btn btn-primary" />
 					</fieldset>
 				</div>
 				<div class="col-md-4"></div>

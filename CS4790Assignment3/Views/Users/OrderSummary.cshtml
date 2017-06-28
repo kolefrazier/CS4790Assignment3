@@ -1,0 +1,119 @@
+@model CS4790Assignment3.Models.ViewModels.Checkout
+@{
+	Layout = "~/Views/Shared/_OrderSummary.cshtml";
+	ViewData["title"] = "Order Summary";
+}
+
+@{
+	var IsValidated = ViewData["IsValidated"];
+	if (IsValidated == null)
+	{
+		var Role = (string)ViewData["Role"];
+		if (Role == "Administrator")
+		{
+			<div class="row col-lg-12 col-md-12 text-center">
+				<h5 class="text-success"><a asp-action="Login" asp-controller="Users">Login</a> or <a asp-action="Create" asp-controller="Users">Login</a> to save your cart or checkout!</h5>
+			</div>
+		}
+	}
+}
+
+<div class="row">
+	<h3 class="text-center">Your order has been placed!</h3>
+	<h4 class="text-center">Thank you for shopping with us!</h4>
+	<br />
+	<h6 class="text-center">Please print a copy of this page for your records.</h6>
+	<hr />
+</div>
+
+<div class="row col-md-12">
+	
+	<div class="col-md-1"></div>
+	<div class="col-md-4">
+		<h4 class="text-center"><u>Purchaser Details</u></h4>
+		<dl class="dl-horizontal">
+			<dt>Purchaser</dt>
+			<dd>@Html.DisplayFor(i => i.User.Username)</dd>
+			<dt>Address</dt>
+			<dd>
+				@Html.DisplayFor(i => i.User.Address)
+				@Html.DisplayFor(i => i.User.City), @Html.DisplayFor(i => i.User.State)
+				@Html.DisplayFor(i => i.User.Zipcode)
+			</dd>
+			<dt>Phone</dt>
+			<dd>@Html.DisplayFor(i => i.User.PhoneNumber)</dd>
+			<dt>Email</dt>
+			<dd>@Html.DisplayFor(i => i.User.EmailAddress)</dd>
+		</dl>
+	</div>
+	<div class="col-md-1"></div>
+	<div class="col-md-4">
+		<h4 class="text-center"><u>Order Totals</u></h4>
+		<dl class="dl-horizontal">
+			<dt>Total Quantity</dt>
+			<dd>@Html.DisplayFor(i => i.Cart.TotalItems)</dd>
+		</dl>
+		<dl class="dl-horizontal">
+			<dt>Sub Total</dt>
+			<dd>@Html.DisplayFor(i => i.Cart.SubTotal)</dd>
+			<dt>Tax</dt>
+			<dd>@Html.DisplayFor(i => i.Cart.TaxTotal) <h6><i>rate @Html.DisplayFor(i => i.Cart.TaxRate)</i></h6></dd>
+		</dl>
+		<dl class="dl-horizontal">
+			<dt>Grand Total</dt>
+			<dd>@Html.DisplayFor(i => i.Cart.GrandTotal)</dd>
+		</dl>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+
+<div class="row">
+	<div class="col-md-12 text-center">
+		<h4><u>Order Inventory</u></h4>
+	</div>
+	<div class="col-md-12">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<table class="col-md-6 table table-hover">
+				<thead>
+					<tr>
+						<th>Game ID</th>
+						<th>Game Name</th>
+						<th>Quantity</th>
+						<th>Price Per Item</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var entry in Model.Cart.Cart)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(i => entry.GameID)
+							</td>
+							<td>
+								@Html.DisplayFor(i => entry.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(i => entry.Quantity)
+							</td>
+							<td>
+								@Html.DisplayFor(g => entry.Price)
+							</td>
+							<td>
+								@(entry.Price * entry.Quantity)
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+</div>
+
+<div class="row">
+	<br />
+	<hr />
+	<p>Thank you for shopping with us. Please <a href="mailto:support@realwebsite.com">email our customer support</a> if you have any questions, concerns or feedback about your order or shopping experience.</p>
+</div>

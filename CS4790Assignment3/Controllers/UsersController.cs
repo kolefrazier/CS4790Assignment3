@@ -43,7 +43,7 @@ namespace CS4790Assignment3.Views.Users
 		[ValidateAntiForgeryToken]
 		public IActionResult Login(User user)
 		{
-			if (ModelState.IsValid)
+			if (user.Username != "" && user.Password != "")
 			{
 				if (ValidateUser(user))
 				{
@@ -79,7 +79,7 @@ namespace CS4790Assignment3.Views.Users
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("UserID,Username,Password,EmailAddress,Role")] User user)
+		public async Task<IActionResult> Create([Bind("UserID,Username,Password,EmailAddress,Role,Address,City,State,Zipcode,PhoneNumber")] User user)
 		{
 			user.Role = "User"; //Default to user. Admins will manually update the DB to add other Administrators. (Or Version 2.0 feature?)
 			if (ModelState.IsValid)
@@ -172,7 +172,50 @@ namespace CS4790Assignment3.Views.Users
 				GrandTotal = tmpTotalCost + (tmpTotalCost * TaxRateParsed),
 				TotalItems = tmpTotalItems
 			};
-			return View(temporaryCart);
+
+			var temporaryCheckout = new Checkout
+			{
+				Cart = temporaryCart,
+				User = user
+			};
+
+			return View(temporaryCheckout);
+		}
+
+		public async Task<IActionResult> OrderSummary(Checkout order)
+		{
+			SetUserData();
+			
+			//Okay, cheating a bit here by re-generating the order's details instead of passing the same model from Checkout to Summary.
+			double tmpTotalCost = SimpleShoppingCart.ShoppingCart.Sum(i => (i.Quantity * i.Price));
+			int tmpTotalItems = SimpleShoppingCart.ShoppingCart.Sum(i => i.Quantity);
+			var user = _context.Users.FirstOrDefault<User>(u => u.UserID == HttpContext.Session.GetInt32("userid"));
+			var taxrate = await GetTaxRate(user.Zipcode);
+
+			double TaxRateParsed;
+			double.TryParse(taxrate, out TaxRateParsed);
+
+			var temporaryCart = new ShoppingCart
+			{
+				Cart = SimpleShoppingCart.ShoppingCart,
+				TaxRate = TaxRateParsed,
+				TaxTotal = (tmpTotalCost * TaxRateParsed),
+				SubTotal = tmpTotalCost,
+				GrandTotal = tmpTotalCost + (tmpTotalCost * TaxRateParsed),
+				TotalItems = tmpTotalItems
+			};
+
+			var temporaryCheckout = new Checkout
+			{
+				Cart = temporaryCart,
+				User = user
+			};
+
+			//One behavior item to take care of AFTER creating out return product:
+			//	Clear the global shopping cart's inventory.
+			SimpleShoppingCart.RemoveAll();
+
+			return View(temporaryCheckout);
 		}
 
 		private async Task<string> GetTaxRate(int zip)

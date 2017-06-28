@@ -1,4 +1,4 @@
-@model CS4790Assignment3.Models.ViewModels.ShoppingCart
+@model CS4790Assignment3.Models.ViewModels.Checkout
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewData["title"] = "Checkout";
@@ -24,61 +24,95 @@
 </div>
 
 <div class="row">
-	<div>
+	<div class="col-md-12">
 		<a asp-action="Index" asp-controller="Games" class="btn btn-warning">Continue Shopping</a>
-		<btn />
+		<br /><br />
 	</div>
-	<table class="col-md-12 table table-hover">
-		<tbody>
-			@foreach (var entry in Model.Cart)
-			{
-				<tr>
-					<td>
-						@Html.DisplayFor(i => entry.GameID)
-					</td>
-					<td>
-						@Html.DisplayFor(i => entry.Name)
-					</td>
-					<td>
-						@Html.DisplayFor(i => entry.Quantity)
-					</td>
-					<td>
-						@Html.DisplayFor(g => entry.Price)
-					</td>
-					<td>
-						@(entry.Price * entry.Quantity)
-					</td>
-				</tr>
-			}
-		</tbody>
-	</table>
+	<div class="col-md-12">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<table class="col-md-6 table table-hover">
+				<thead>
+					<tr>
+						<th>Game ID</th>
+						<th>Game Name</th>
+						<th>Quantity</th>
+						<th>Price Per Item</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var entry in Model.Cart.Cart)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(i => entry.GameID)
+							</td>
+							<td>
+								@Html.DisplayFor(i => entry.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(i => entry.Quantity)
+							</td>
+							<td>
+								@Html.DisplayFor(g => entry.Price)
+							</td>
+							<td>
+								@(entry.Price * entry.Quantity)
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
 </div>
 
 <div class="row col-md-12">
 	<br /><hr />
-	<div class="col-md-8"></div>
+	<div class="col-md-1"></div>
+	<div class="col-md-4">
+		<dl class="dl-horizontal">
+			<dt>Purchaser</dt>
+			<dd>@Html.DisplayFor(i => i.User.Username)</dd>
+			<dt>Address</dt>
+			<dd>
+				@Html.DisplayFor(i => i.User.Address)
+				@Html.DisplayFor(i => i.User.City), @Html.DisplayFor(i => i.User.State)
+				@Html.DisplayFor(i => i.User.Zipcode)
+			</dd>
+			<dt>Phone</dt>
+			<dd>@Html.DisplayFor(i => i.User.PhoneNumber)</dd>
+			<dt>Email</dt>
+			<dd>@Html.DisplayFor(i => i.User.EmailAddress)</dd>
+		</dl>
+	</div>
+	<div class="col-md-1"></div>
 	<div class="col-md-4">
 		<dl class="dl-horizontal">
 			<dt>Total Quantity</dt>
-			<dd>@Html.DisplayFor(i => i.TotalItems)</dd>
+			<dd>@Html.DisplayFor(i => i.Cart.TotalItems)</dd>
 		</dl>
 		<dl class="dl-horizontal">
 			<dt>Sub Total</dt>
-			<dd>@Html.DisplayFor(i => i.SubTotal)</dd>
+			<dd>@Html.DisplayFor(i => i.Cart.SubTotal)</dd>
 			<dt>Tax</dt>
-			<dd>@Html.DisplayFor(i => i.TaxTotal) <h6><i>rate @Html.DisplayFor(i =>i.TaxRate)</i></h6></dd>
+			<dd>@Html.DisplayFor(i => i.Cart.TaxTotal) <h6><i>rate @Html.DisplayFor(i =>i.Cart.TaxRate)</i></h6></dd>
 		</dl>
 		<dl class="dl-horizontal">
 			<dt>Grand Total</dt>
-			<dd>@Html.DisplayFor(i => i.GrandTotal)</dd>
+			<dd>@Html.DisplayFor(i => i.Cart.GrandTotal)</dd>
 		</dl>
 	</div>
+	<div class="col-md-1"></div>
 </div>
 
 <div class="row">
+
 	<div class="col-md-4"></div>
-	<div class="col-md-4">
-		<a asp-action="Checkout" asp-controller="Users" class="btn btn-success">Submit Order</a>
+	<div class="col-md-4 text-center">
+		<a asp-action="OrderSummary" asp-controller="Users" class="btn btn-success">Submit Order</a>
 		<a asp-action="ViewCart" asp-controller="Users" class="btn btn-danger">Return to Cart</a>
 	</div>
 	<div class="col-md-4"></div>

@@ -86,5 +86,11 @@ namespace CS4790Assignment3
 			_TotalQuantity -= Item.Quantity;
 			ShoppingCart.Remove(Item);
 		}
+
+		public static void RemoveAll()
+		{
+			_TotalQuantity = 0;
+			ShoppingCart.Clear();
+		}
 	}
 }

@@ -6,45 +6,92 @@
 
 <div class="row">
 	<h2 class="text-center">New User Registration</h2>
+	<h6 class="text-center"><i>DEBUG: All users are defaulted to the regular "User" role. Ver2.0 will contain an administrative panel to change users to the "Admin" role.</i></h6>
 	<br />
 </div>
 
 <form asp-action="Create">
-	<div class="form-horizontal">
-		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label asp-for="Username" class="col-md-4 control-label"></label>
-					<div class="col-md-8">
-						<input asp-for="Username" type="text" class="form-control" />
-						<span asp-validation-for="Username" class="text-danger"></span>
-					</div>
-				</div>
-				<div class="form-group">
-					<label asp-for="Password" class="col-md-4 control-label"></label>
-					<div class="col-md-8">
-						<input asp-for="Password" type="password" class="form-control" />
-						<span asp-validation-for="Password" class="text-danger"></span>
-					</div>
-				</div>
-				<div class="form-group">
-					<label asp-for="EmailAddress" class="col-md-4 control-label"></label>
-					<div class="col-md-8">
-						<input asp-for="EmailAddress" type="email" class="form-control" />
-						<span asp-validation-for="EmailAddress" class="text-danger"></span>
-					</div>
-				</div>
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2"></div>
 
-				<div class="col-md-3"></div>
-			</div>
-			<div class="row form-group">
-				<div class="col-md-12 text-center">
-					<input type="submit" value="Register" class="btn btn-success" />
-					<a asp-action="Index" asp-controller="Games" class="btn btn-danger">Cancel</a>
+		<div class="col-lg-4 col-md-4 form-horizontal">
+			<div class="form-group">
+				<label asp-for="Username" class="col-md-4 control-label"></label>
+				<div class="col-md-8">
+					<input asp-for="Username" type="text" class="form-control" />
+					<span asp-validation-for="Username" class="text-danger"></span>
 				</div>
 			</div>
+
+			<div class="form-group">
+				<label asp-for="Password" class="col-md-4 control-label"></label>
+				<div class="col-md-8">
+					<input asp-for="Password" type="password" class="form-control" />
+					<span asp-validation-for="Password" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div><br /></div>
+
+			<div class="form-group">
+				<label asp-for="EmailAddress" class="col-md-4 control-label"></label>
+				<div class="col-md-8">
+					<input asp-for="EmailAddress" type="email" class="form-control" />
+					<span asp-validation-for="EmailAddress" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="PhoneNumber" class="col-md-4 control-label"></label>
+				<div class="col-md-8">
+					<input asp-for="PhoneNumber" type="text" class="form-control" />
+					<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-4 col-md-4 form-horizontal">
+			<div class="form-group">
+				<label asp-for="Address" class="col-md-4 control-label"></label>
+				<div class="col-md-8">
+					<input asp-for="Address" type="text" class="form-control" />
+					<span asp-validation-for="Address" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="City" class="col-md-4 control-label"></label>
+				<div class="col-md-8">
+					<input asp-for="City" type="text" class="form-control" />
+					<span asp-validation-for="City" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="State" class="col-md-4 control-label"></label>
+				<div class="col-md-8">
+					<input asp-for="State" type="text" class="form-control" />
+					<span asp-validation-for="State" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="Zipcode" class="col-md-4 control-label"></label>
+				<div class="col-md-8">
+					<input asp-for="Zipcode" type="text" class="form-control" />
+					<span asp-validation-for="Zipcode" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="col-lg-2 col-md-2"></div>
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="col-md-12 text-center">
+			<input type="submit" value="Register" class="btn btn-success" />
+			<a asp-action="Index" asp-controller="Games" class="btn btn-danger">Cancel</a>
 		</div>
 	</div>
 </form>
