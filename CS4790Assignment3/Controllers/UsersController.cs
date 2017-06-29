@@ -199,10 +199,13 @@ namespace CS4790Assignment3.Views.Users
 
 			double TaxRateParsed;
 			double.TryParse(taxrate, out TaxRateParsed);
+			CartItem[] Cartcopy = new CartItem[SimpleShoppingCart.ShoppingCart.Count];
+			SimpleShoppingCart.ShoppingCart.CopyTo(Cartcopy);
 
 			var temporaryCart = new ShoppingCart
 			{
-				Cart = SimpleShoppingCart.ShoppingCart,
+				//Cart = SimpleShoppingCart.ShoppingCart,
+				Cart = Cartcopy.ToList(),
 				TaxRate = TaxRateParsed,
 				TaxTotal = (tmpTotalCost * TaxRateParsed),
 				SubTotal = tmpTotalCost,
@@ -218,7 +221,7 @@ namespace CS4790Assignment3.Views.Users
 
 			//One behavior item to take care of AFTER creating out return product:
 			//	Clear the global shopping cart's inventory.
-			SimpleShoppingCart.RemoveAll();
+			SimpleShoppingCart.RemoveAll(); //Commented out for now, as this is killing the only copy of the static shopping cart.
 
 			return View(temporaryCheckout);
 		}
