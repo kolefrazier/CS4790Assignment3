@@ -1,7 +1,7 @@
 @model List<CS4790Assignment3.Models.ViewModels.CartItem>
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	ViewData["title"] = "View Your Cart";
+	ViewData["title"] = "Your Shopping Cart";
 }
 
 @{
@@ -26,14 +26,9 @@
 </div>
 
 <div class="row">
-	<div>
-		<a asp-action="Index" asp-controller="Games" class="btn btn-warning">Continue Shopping</a>
-		<btn />
-	</div>
 	<table class="col-md-12 table table-hover">
 		<thead>
 			<tr>
-				<th></th> <!--Creates header space for the thumbnail, but no header content.-->
 				<th>
 					Game ID
 				</th>
@@ -56,9 +51,6 @@
 			@foreach (var entry in Model)
 			{
 				<tr>
-					<td class="img-thumbnail small">
-						<img src="#" style="width: 32px; height: 32px; background-color: darkgrey;"/>
-					</td>
 					<td>
 						@Html.DisplayFor(i => entry.GameID)
 					</td>
@@ -66,7 +58,15 @@
 						@Html.DisplayFor(i => entry.Name)
 					</td>
 					<td>
-						@Html.DisplayFor(i => entry.Quantity)
+						<form asp-action="UpdateCartItemQuantity" asp-controller="Users">
+							<input type="hidden" value="@entry.GameID" />
+							<div class="form-horizontal">
+								<div class="col-md-3">
+									<input type="number" value="@entry.Quantity" step="1" class="form-control" />
+								</div>
+								<input type="button" value="Update" class="btn btn-primary" />
+							</div>
+						</form>
 					</td>
 					<td>
 						@Html.DisplayFor(i => entry.Price)
@@ -85,7 +85,8 @@
 
 <div class="row">
 	<div class="col-md-4"></div>
-	<div class="col-md-4">
+	<div class="col-md-4 text-center">
+		<br />
 		@{
 			if (IsValidated != null)
 			{

@@ -1,15 +1,15 @@
 ﻿@model CS4790Assignment3.Models.Game
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	ViewData["Title"] = "Edit Game";
+	ViewData["Title"] = "Add Game";
 }
 
 <div class="row">
-	<h2 class="text-center">Edit Game</h2>
+	<h2 class="text-center">Add Game</h2>
 	<br />
 </div>
 
-<form asp-action="Edit">
+<form asp-action="Create" asp-controller="Games">
 	<div class="form-horizontal">
 		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 		<input type="hidden" asp-for="GameID" />
@@ -22,6 +22,13 @@
 					<div class="col-md-8">
 						<input asp-for="Name" type="text" class="form-control" />
 						<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label asp-for="Description" class="col-md-4 control-label"></label>
+					<div class="col-md-8">
+						<input asp-for="Description" type="text" rows="4" cols="50" class="form-control" />
+						<span asp-validation-for="Description" class="text-danger"></span>
 					</div>
 				</div>
 				<div class="form-group">
@@ -39,13 +46,6 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label asp-for="AlreadyOwned" class="col-md-4 control-label"></label>
-					<div class="col-md-8">
-						<input asp-for="AlreadyOwned" type="checkbox" class="form-control" />
-						<span asp-validation-for="AlreadyOwned" class="text-danger"></span>
-					</div>
-				</div>
-				<div class="form-group">
 					<label asp-for="IsOnlineMultiplayer" class="col-md-4 control-label"></label>
 					<div class="col-md-8">
 						<input asp-for="IsOnlineMultiplayer" type="checkbox" class="form-control" />
@@ -57,6 +57,13 @@
 					<div class="col-md-8">
 						<input asp-for="PublisherID" type="number" class="form-control" />
 						<span asp-validation-for="PublisherID" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label asp-for="ImagePath" class="col-md-4 control-label"></label>
+					<div class="col-md-8">
+						<input asp-for="ImagePath" type="text" class="form-control" />
+						<span asp-validation-for="ImagePath" class="text-danger"></span>
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,6 @@
 ﻿body {
-	padding-top: 50px;
+	padding-top: 0px;
+	margin-top: 0px;
 	padding-bottom: 20px;
 }
 
@@ -39,4 +40,36 @@ textarea {
 input[type="checkbox"][disabled] {
 	color: #000000;
 	background-color: #000000;
+}
+
+/* Source: https://www.bootply.com/108614 */
+.BannerImage {
+	width: 100%;
+	padding-top: 0px;
+	height: 5%;
+	background-size: cover;
+}
+
+.BannerImage img {
+	height: 3%;
+}
+
+.TitleText {
+	background-color: gray;
+	width: 100%;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+
+.TitleText h1 a {
+	color: white;
+}
+
+.HeaderSpacer {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.FunctionRow {
+	padding-top: 3px;
 }

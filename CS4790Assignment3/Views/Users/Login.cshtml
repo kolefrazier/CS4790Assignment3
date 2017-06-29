@@ -3,12 +3,6 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	ViewData["Title"] = "Login";
 }
-
-<div class="text-muted text-center">
-	<p>DEBUG: Pre-populated credentials, or create your own basic User account using the Register page.</p>
-	<p>U: Admin, P: Password123</p>
-	<p>U: User, P: 123Password</p>
-</div>
 @{
 	var IsValidated = ViewData["IsValidated"];
 	if (IsValidated == null)
@@ -61,3 +55,8 @@
 	}
 }
 
+<div class="text-muted text-center">
+	<br /><br />
+	<p>DEBUG: Pre-populated credentials, or create your own basic User account using the <a asp-action="Create" asp-controller="Users">account registration</a> page.</p>
+	<p>[Admin Role] U: Admin, P: Password123 || [User Role] U: User, P: 123Password</p>
+</div>

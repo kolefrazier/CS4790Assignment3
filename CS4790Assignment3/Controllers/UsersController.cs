@@ -152,6 +152,11 @@ namespace CS4790Assignment3.Views.Users
 			return RedirectToAction("ViewCart", "Users", SimpleShoppingCart.ShoppingCart);
 		}
 
+		public IActionResult UpdateCartItemQuantity(int id, int qty)
+		{
+			return View("ViewCart");
+		}
+
 		public async Task<IActionResult> Checkout()
 		{
 			SetUserData();
@@ -253,6 +258,7 @@ namespace CS4790Assignment3.Views.Users
 			HttpContext.Session.Remove("userid");
 			HttpContext.Session.Remove("role");
 			HttpContext.Session.Clear();
+			SimpleShoppingCart.EmptyCart();
 			return RedirectToAction("Index", "Games");
 		}
 

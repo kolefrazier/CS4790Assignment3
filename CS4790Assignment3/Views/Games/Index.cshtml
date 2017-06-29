@@ -1,7 +1,7 @@
 @model PaginatedList<CS4790Assignment3.Models.Game>
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Store Catalog";
 }
 
 <div class="row">
@@ -18,69 +18,85 @@
 			}
 		}
 
-		<div class="btn" style="visibility: @ViewData["DefaultFilterVisibility"]">
-			<a asp-action="Index">Default Sort</a>
+		<div class="btn FunctionRow" style="visibility: @ViewData["DefaultFilterVisibility"]">
+			<a asp-action="Index" class="btn btn-info">Clear sort or search</a>
 		</div>
 	</div>
-	<div class="col-lg-6"></div>
+	<div class="col-lg-4">
+		<form asp-action="Index" method="get">
+			Search by keyword: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+			<input type="submit" value="Search" class="btn btn-default" />
+		</form>
+	</div>
+	<div class="col-lg-4"></div>
 </div>
 
-<table class="table table-hover">
-	<thead>
-		<tr>
-			<th>
-				Game ID
-			</th>
-			<th>
-				<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["currentFilter"]">Game Name</a>
-			</th>
-			<th>
-				Genre
-			</th>
-			<th>
-				Price
-			</th>
-			<th>
-				Online Multiplayer Capabilities
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var entry in Model)
-		{
+<div class="row">
+	<table class="table table-hover">
+		<thead>
 			<tr>
-				<td>
-					@Html.DisplayFor(g => entry.GameID)
-				</td>
-				<td>
-					<a asp-action="Details" asp-route-id="@entry.GameID" alt="Click to edit entry.">
-						@Html.DisplayFor(g => entry.Name)
-					</a>
-				</td>
-				<td>
-					@Html.DisplayFor(g => entry.Genre)
-				</td>
-				<td>
-					@Html.DisplayFor(g => entry.Price)
-				</td>
-				<td>
-					@{
-						if (entry.IsOnlineMultiplayer == true)
-						{
-							<p>Online Multiplayer Available</p>
-						}
-						else
-						{
-							<p>Singleplayer</p>
-						}
-					}
-				</td>
+				<th></th> <!--Header space (intentionally blank) for thumbnail images-->
+				<th>
+					<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSort"]" asp-route-currentFilter="@ViewData["currentFilter"]">Game Name</a>
+				</th>
+				<th>
+					Genre
+				</th>
+				<th>
+					<a asp-aciton="Index" asp-route-sortOrder="@ViewData["PriceSort"]" asp-route-currentfilter="@ViewData["currentFilter"]">Price</a>
+				</th>
+				<th>
+					Online Multiplayer Capabilities
+				</th>
 			</tr>
+		</thead>
+		<tbody>
+			@foreach (var entry in Model)
+			{
+				<tr>
+					<td>
+						<img src="~/images/games/@entry.ImagePath" style="width: 32px; height: 32px; background-color: darkgrey;" />
+					</td>
+					<td>
+						<a asp-action="Details" asp-route-id="@entry.GameID" alt="Click to edit entry.">
+							@Html.DisplayFor(g => entry.Name)
+						</a>
+					</td>
+					<td>
+						@Html.DisplayFor(g => entry.Genre)
+					</td>
+					<td>
+						@{
+							if (entry.Price == 0.0)
+							{
+								<p>Free!</p>
+							}
+							else
+							{
+								@Html.DisplayFor(g => entry.Price)
+							}
 						}
-	</tbody>
-</table>
 
-<div class="row text-center">
+					</td>
+					<td>
+						@{
+							if (entry.IsOnlineMultiplayer == true)
+							{
+								<p>Online Multiplayer Available</p>
+							}
+							else
+							{
+								<p>Singleplayer</p>
+							}
+						}
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+<div class="row text-center form-horizontal">
 	<br />
 	@{
 		var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
@@ -90,17 +106,20 @@
 		   asp-route-sortOrder="@ViewData["CurrentSort"]"
 		   asp-route-page="@(Model.PageIndex - 1)"
 		   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-		   class="btn @prevDisabled">
-			Previous
+		   class="btn btn-default @prevDisabled">
+			&lt;
 		</a>
+
+		<span style="padding-left: 10px; padding-right: 10px;">
+			@(Model.PageIndex)
+		</span>
 
 		<a asp-action="Index"
 		   asp-route-sortOrder="@ViewData["CurrentSort"]"
 		   asp-route-page="@(Model.PageIndex + 1)"
 		   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-		   class="btn @nextDisabled">
-			Next
+		   class="btn btn-default @nextDisabled">
+			&gt;
 		</a>
-
 	}
 </div>

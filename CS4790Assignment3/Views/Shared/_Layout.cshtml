@@ -4,7 +4,9 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>A3 - @ViewData["Title"]</title>
+	<title>A4 - @ViewData["Title"]</title>
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 
 	<environment names="Development">
 		<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -19,15 +21,29 @@
 	@Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
+	<div>
+		<div class="BannerImage top">
+			<img src="~/images/video-game-banner-trimmed.png" style="width: 100%; height: 40%; background-size:cover;" />
+		</div>
+		<div class="TitleText col-lg-12 text-center">
+			<h1><a asp-action="Index" asp-controller="Games">Kole's Game Store</a></h1>
+		</div>
+	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12 text-center">
-				<h1><a asp-action="Index" asp-controller="Games">Games Store</a></h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<a asp-action="ViewCart" asp-controller="Users">View your shopping cart</a>
+			<div class="col-md-3 text-center">
+				@{ var TitleCheck = (string)ViewData["Title"];
+					if (TitleCheck == "Your Shopping Cart")
+					{
+						<img src="/images/nav/home.svg" />
+						<a asp-action="Index" asp-controller="Games">Return to catalog</a>
+					}
+					else
+					{
+						<img src="/images/nav/shoppingcart.svg" />
+						<a asp-action="ViewCart" asp-controller="Users">View your shopping cart</a>
+					}
+				}
 			</div>
 			<div class="col-md-6"></div>
 			<div class="col-md-3">
@@ -48,8 +64,6 @@
 						</div>
 					}
 				}
-				
-				
 			</div>
 		</div>
 		<div class="row text-center"><hr /></div>

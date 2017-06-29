@@ -8,6 +8,20 @@
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
     <UserSecretsId>b5d5795c-a0a5-41e4-94e7-a31ddaf24dd0</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\favicon-16x16.png" />
+    <Content Include="wwwroot\favicon-32x32.png" />
+    <Content Include="wwwroot\images\banner.jpg" />
+    <Content Include="wwwroot\images\BaseBanners\banner1.svg" />
+    <Content Include="wwwroot\images\BaseBanners\banner2.svg" />
+    <Content Include="wwwroot\images\BaseBanners\banner3.svg" />
+    <Content Include="wwwroot\images\BaseBanners\banner4.svg" />
+    <Content Include="wwwroot\images\nav\home.svg" />
+    <Content Include="wwwroot\images\nav\ic_shopping_cart_black_24px.svg" />
+    <Content Include="wwwroot\images\nav\shoppingcart.svg" />
+    <Content Include="wwwroot\images\video-games-archives-livingston-parish-library-in-video-game-banner.png.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
@@ -24,6 +38,9 @@
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\images\games\" />
   </ItemGroup>
 
 </Project>

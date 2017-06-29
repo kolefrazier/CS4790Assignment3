@@ -1,5 +1,95 @@
 ﻿@{
-    ViewData["Title"] = "Assignment Notes";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "About Assignment 4";
 }
 
-<p>Use this area to provide additional information.</p>
+
+<div class="row text-center">
+	<h1>About Assignment 4</h1>
+	<h3>Kole Frazier</h3>
+	<hr />
+</div>
+
+<div class="row">
+	<h2 class="text-center">Function Testing Helpers</h2>
+	<p>Some pages have a "DEBUG" notice on them. Login notes admin and regular user credentials that are initialized in the database by default. Registration notes that all new users are defaulted to being a regular user.</p>
+	<p>The cart-checkout page is slow to load for a specific reason. See "Checkout Page" below for full details.</p>
+	<hr />
+</div>
+
+<div class="row">
+	<h2 class="text-center">General Thoughts</h2>
+	<p>I definitely put in quite a bit of time into this project - and I'm proud of the results and my progress in learning ASP.NET. I'm definitely feeling much more comfortable with more aspects of ASP.NET. </p>
+	<p>There were a couple areas I felt unprepared to tackle: proper user authentication, managing user sessions (specifically dynamic session expiration times) and the shopping cart threw me off until I settled on a new class akin to the Paginated List.</p>
+	<p>I didn't do too much visual modification. I kept the general table-based display I used in Assignment 3, but tried to plump it up while focusing on fixing a lot of the issues I had in Assignment 3. (Got nearly all of them, I believe!)</p>
+	<p>One area I can definitely improve on is breaking apart my views and controllers into more specific responsibilities. Such as a controller and view group for cart, user, catalog, checkout, etc.</p>
+	<hr />
+</div>
+
+<div class="row">
+	<h2 class="text-center">Assignment Requirements</h2>
+	<hr />
+</div>
+
+<div class="row">
+	<h3 class="text-center">Home Page</h3>
+	<p><b>Shared Layout</b> Each of my pages uses a shared layout. All pages except one utilize /Views/Shared/_Layout. The printer-friendly order summary has its own modified version of _Layout, _OrderSummary.</p>
+	<p><b>About Page</b> This is the about page. Not much else to say here.</p>
+	<p><b>Administration Page</b> My administration features are spread out onto their contextual pages (such as adding a store item or editing a specific item's details). For the size of the website, this feels proper to me rather than having a dedicated administration page. If I had more administration needs - such as a user administration page - I would definitely break those out into dedicated pages as necessary.</p>
+	<hr />
+</div>
+
+<div class="row">
+	<h3 class="text-center">Product Page</h3>
+	<p><b>Browse by Category</b> I had one main category - game. Past this, my site allows for users to search the genre (or sub-category) and titles. Each column is sortable, too.</p>
+	<p><b>Paging</b> My site's index page is paged, complete with functioning previous/next buttons. Search results are paged, too.</p>
+	<p><b>Product Details</b> Clicking an item's name will take you to its full details page. This page allows users to add a specified quantity of the item to the shopping cart. One thing I could have done better was provide a feature to show more images for each product. This wouldn't be a difficult thing for me to do now - I just ran out of time for this particular feature.</p>
+	<hr />
+</div>
+
+<div class="row">
+	<h3 class="text-center">Cart Page</h3>
+	<p><b>Temporary Cart</b> The shopping cart is not stored in any persistent storage. When the session ends, the user loses the shopping cart.</p>
+	<p><b>Cart Functions</b> The shopping cart in general acts how you would expect a shopping cart to. It displays some basic price and product information and allows users to adjust what is in the cart. A user must be signed in to checkout their cart, too.</p>
+	<p><b>Cart Review</b> A signed in user can proceed to checkout a cart. The checkout process begins by having the user review the cart then submit the order. One missing feature is a payment and shipping details collection part to this page. I didn't work on these parts, as I felt it was a bit redundant for the scope of the assignment.</p>
+	<p><b>Checkout and Saving Cart</b> As mentioned above, a user must be signed in to attempt to checkout their shopping cart. I ran out of time for saving the shopping cart - now that I'm more comfortable with basic sessions, I would save the cart by submitting JSON-formatted data into the database and associating it with UserIDs</p>
+	<p><b>Login Session Saving</b> This is one area that I did not feel prepared for and was not able to complete. I spent a decent amount of time early into this project trying to figure out how to set proper sessions and session cookies. I moved on to other parts of this assignment and ran out of time to complete this piece. In lieu of this, the shopping cart is cleared if the user signs out.</p>
+	<hr />
+</div>
+
+<div class="row">
+	<h3 class="text-center">Registration Page</h3>
+	<p><b>Validation</b> I broke validation and registration out into two different pages. The validation page prompts for a username and password. It has a flag for remembering the session (which, as discussed above, doesn't function properly). Validation works as intended. Signing in does replace the shared layout's "Login | Register" section with user information and a log out link.</p>
+	<p><b>New User</b> I made a simple new user page, which collects a lot of the user's information. It stores the user as a regular, non-admin user. There is currently no way (other than manual database entry editing) to sign up as an admin or change a user's role.</p>
+	<p><b>Logging Out</b> Users do have the option to sign out. Signing out </p>
+	<hr />
+</div>
+
+<div class="row">
+	<h3 class="text-center">Checkout Page</h3>
+	<p><b>During checkout</b> Sales tax is calculated and displayed to the sign-in user based on their zip code.</p>
+	<p><b>After checkout</b> A trimmed down confirmation page is shown to the user, containing what they purchased, pricing/grand total details and their information. Much like a poorly-designed receipt.</p>
+	<br />
+	<h3 class="text-center">Slow Loading Checkout Page</h3>
+	<p>The checkout page loads slow because the controller is reaching out to the custom-built API I made and have hosted on Azure, just for this assignment. I could have sworn that the assignment requirements mentioned a specific CS Department server to use (Titan?). Since I couldn't find details about it, I made my own API.</p>
+	<p><u>Here are some links for the API</u></p>
+	<ul class="text-left">
+		<li>
+			<p><a href="https://github.com/kolefrazier/ApiExample">Source on Github</a></p>
+		</li>
+		<li>
+			<p><a href="http://assignment4-api.azurewebsites.net/api/tax/">Live Azure Link</a> </p>
+		</li>
+		<li>
+			<p>Another Azure Link: <a href="http://assignment4-api.azurewebsites.net/api/tax/2">Showing tax rate by ID</a> </p>
+		</li>
+	</ul>
+	<p>I spent a decent amount of time trying to recall how to make calls to another site and interpret the data. (I've never been formally taught how to do this, just toyed with it in personal projects a year or so ago.)</p>
+	<hr />
+</div>
+
+<div class="row">
+	<h3 class="text-center">Confirmation Page</h3>
+	<p><b>Formatted for Printing</b> The page is trimmed down, with no excess content on it. Perfect for printing.</p>
+	<hr />
+</div>

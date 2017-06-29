@@ -40,7 +40,7 @@ namespace CS4790Assignment3.Controllers
 
 			ViewData["CurrentSort"] = sortOrder;
 			ViewData["NameSort"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-			ViewData["HoursPlayed"] = sortOrder == "Price" ? "price_desc" : "Price";
+			ViewData["PriceSort"] = sortOrder == "Price" ? "price_desc" : "Price";
 			ViewData["currentFilter"] = searchString;
 			ViewData["Message"] = HttpContext.Session.GetString("message");
 
@@ -53,13 +53,16 @@ namespace CS4790Assignment3.Controllers
 			}
 
 			var games = from g in _context.Games select g;
+			ViewData["DefaultFilterVisibility"] = "visible";
+			bool ShowDefaultFilter = false;
 
 			if (!String.IsNullOrEmpty(searchString))
 			{
-				games = games.Where(g => g.Name.Contains(searchString));
+				games = games.Where(g => g.Name.Contains(searchString) || g.Genre.Contains(searchString));
+				ShowDefaultFilter = true;
 			}
 
-			ViewData["DefaultFilterVisibility"] = "visible";
+			
 			switch (sortOrder)
 			{
 				case "name_desc":
@@ -72,7 +75,8 @@ namespace CS4790Assignment3.Controllers
 					games = games.OrderByDescending(g => g.Price);
 					break;
 				default:
-					ViewData["DefaultFilterVisibility"] = "hidden";
+					if (!ShowDefaultFilter)
+						ViewData["DefaultFilterVisibility"] = "hidden";
 					games = games.OrderBy(g => g.Name);
 					break;
 			}
@@ -80,6 +84,12 @@ namespace CS4790Assignment3.Controllers
 			int pageSize = 5;
 			return View(await PaginatedList<Game>.CreateAsync(games.AsNoTracking(), page ?? 1, pageSize));
 
+		}
+
+		// GET: Games/About
+		public IActionResult About()
+		{
+			return View();
 		}
 
 		// GET: Games/Details/5
@@ -144,14 +154,14 @@ namespace CS4790Assignment3.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("GameID,Name,Description,ImagePath,Genre,Price,IsOnlineMultiplayer,PublisherID")] Game game)
+		public async Task<IActionResult> Create([Bind("GameID,Name,Description,Genre,Price,IsOnlineMultiplayer,PublisherID,ImagePath")] Game game)
 		{
 			SetUserData();
 			if (ModelState.IsValid)
 			{
 				_context.Add(game);
 				await _context.SaveChangesAsync();
-				return RedirectToAction("Index", game.GameID);
+				return RedirectToAction("Details", "Games", game.GameID);
 			}
 			return View(game);
 		}
@@ -207,9 +217,9 @@ namespace CS4790Assignment3.Controllers
 						throw;
 					}
 				}
-				return RedirectToAction("Details", game.GameID);
+				return RedirectToAction("Details", "Games", game.GameID);
 			}
-			return RedirectToAction("Details", game.GameID);
+			return RedirectToAction("Details", "Games", game.GameID);
 
 		}
 
